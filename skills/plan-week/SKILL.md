@@ -42,7 +42,7 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
 ## When things go wrong
 - **No open slots:** offer to plan into specific days the user names. To change recurring slots, ask first, then `update_posting_slots`.
 - **No performance data yet** (new workspace): plan from pillars and angles only, and say so.
-- **A channel is disconnected** (`get_workspace` or `list_connections` shows it unhealthy): skip it, call `get_connect_link`, give the user the link, then `sync_connections` after they say they're done.
+- **A channel is disconnected** (`list_channels` shows `connected: false`, or `list_connections` shows social publishing unhealthy): skip it, call `get_connect_link`, give the user the link, then `sync_connections` after they say they're done.
 - **A post is locked or already published:** report the error text and move on. Never work around it.
 - **Cleanup a draft:** only after an explicit yes. Prefer `archive_post` if they might want it back. `delete_post` is permanent and only works on never-submitted drafts.
 - **Don't invent** metrics, testimonials, prices or claims. If a draft needs a fact you don't have, leave a clear `[confirm: …]` placeholder and flag it at Checkpoint 2.
