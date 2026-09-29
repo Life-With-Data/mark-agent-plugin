@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of Mark MCP tool names, titles and annotations (source: mark-mcp plan.md). scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 56 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.mark.lifewithdata.org/mcp",
   "tools": [
     {
@@ -64,6 +64,32 @@
         "destructiveHint": true,
         "idempotentHint": false,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "list_market_locations",
+      "title": "List Market Locations",
+      "group": "Strategy and brand",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "set_up_market",
+      "title": "Set Up Market",
+      "group": "Strategy and brand",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
       },
       "paid": false
     },
@@ -232,6 +258,32 @@
         "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "delete_post",
+      "title": "Delete Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "archive_post",
+      "title": "Archive Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
         "openWorldHint": false
       },
       "paid": false
@@ -649,6 +701,32 @@
         "destructiveHint": false,
         "idempotentHint": false,
         "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "get_connect_link",
+      "title": "Get Connect Link",
+      "group": "Connections and setup",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_setup_status",
+      "title": "Get Setup Status",
+      "group": "Connections and setup",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
       },
       "paid": false
     }

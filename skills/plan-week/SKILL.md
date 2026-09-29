@@ -12,6 +12,12 @@ You turn Mark's strategy (pillars, angles, personas), the open calendar slots, a
 - Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, they need to reconnect Mark and pick the right workspace. There is no workspace argument.
 - Ask only for what you can't infer. Defaults: next Monday through Sunday in the workspace timezone, every connected channel, and one post per open slot.
 
+## Setup
+Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
+- Missing market: ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
+- Missing site: ask for the hostname, then `save_site`.
+- Missing LinkedIn/social or Google: `get_connect_link`, give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
+
 ## Procedure
 1. **Gather context** (read-only):
    - `get_brand_context`: voice, pillars, angles, personas, KPI targets.
@@ -34,8 +40,9 @@ You turn Mark's strategy (pillars, angles, personas), the open calendar slots, a
 - Use Mark's words for state: draft, in review, approved, scheduled, published, changes requested.
 
 ## When things go wrong
-- **No open slots:** offer to plan into specific days the user names. Posting slots can't be edited from here yet.
+- **No open slots:** offer to plan into specific days the user names. To change recurring slots, ask first, then `update_posting_slots`.
 - **No performance data yet** (new workspace): plan from pillars and angles only, and say so.
-- **A channel is disconnected** (`get_workspace` or `list_connections` shows it unhealthy): skip it and tell the user to reconnect it in the Mark app.
+- **A channel is disconnected** (`get_workspace` or `list_connections` shows it unhealthy): skip it, call `get_connect_link`, give the user the link, then `sync_connections` after they say they're done.
 - **A post is locked or already published:** report the error text and move on. Never work around it.
+- **Cleanup a draft:** only after an explicit yes. Prefer `archive_post` if they might want it back. `delete_post` is permanent and only works on never-submitted drafts.
 - **Don't invent** metrics, testimonials, prices or claims. If a draft needs a fact you don't have, leave a clear `[confirm: …]` placeholder and flag it at Checkpoint 2.

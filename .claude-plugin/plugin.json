@@ -1,7 +1,7 @@
 {
   "name": "mark",
-  "version": "0.1.0",
-  "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. Connects to Mark's MCP server and adds five marketing skills.",
+  "version": "0.2.0",
+  "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. Connects to Mark's MCP server (56 tools) and adds five marketing skills.",
   "author": {
     "name": "Life With Data",
     "email": "anthony@lifewithdata.org",

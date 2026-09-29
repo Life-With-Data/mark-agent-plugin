@@ -9,7 +9,13 @@ You produce a short, prioritized fix list that a developer or site owner can act
 
 ## Before you start
 - If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
-- Call `get_workspace`, then `list_sites`. Use the primary site unless the user names another. If there are no sites, tell the user to add one in the Mark app.
+- Call `get_workspace`, then `list_sites`. Use the primary site unless the user names another.
+
+## Setup
+Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
+- Missing market: ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
+- Missing site: ask for the hostname, then `save_site`.
+- Missing LinkedIn/social or Google: `get_connect_link`, give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
 
 ## Procedure
 1. **Read what's there** (read-only):
@@ -27,10 +33,10 @@ You produce a short, prioritized fix list that a developer or site owner can act
    - **Effort:** S, M or L.
 5. **Re-indexing (optional).** After the user says fixes are live:
    - Suggest requesting indexing in Google Search Console for the key URLs. That's done in Search Console; Mark can't do it.
-   - If `submit_urls_to_indexnow` is available: **✋ Checkpoint:** ask **"Tell Bing and other IndexNow engines that these ‹N› URLs changed? This can't be recalled."** Only call it on a yes. If the tool isn't available, skip this step.
+   - **✋ Checkpoint:** ask **"Tell Bing and other IndexNow engines that these ‹N› URLs changed? This can't be recalled."** Only call `submit_urls_to_indexnow` on a yes.
 6. **Close** with the top three fixes restated, and when to re-check (after the next audit, or run `run_site_audit` again once the fixes are deployed).
 
 ## Rules
 - Never claim a fix will produce a specific ranking or traffic change.
 - Quote the audit date and the data period with every number.
-- If Search Console isn't connected, say which insights are missing and that it's connected in the Mark app.
+- If Search Console isn't connected, say which insights are missing. Call `get_connect_link`, give the user the link, then `sync_connections` after they say they're done.

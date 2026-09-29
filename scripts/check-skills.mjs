@@ -3,7 +3,6 @@
 //  - frontmatter: name == folder, [a-z0-9-], ≤64 chars; description 1–1024 chars, no angle brackets
 //  - body under 500 lines
 //  - every `snake_case` tool reference exists in tools.json (enum values allowlisted below)
-//  - references to PR 2 tools must be framed as optional ("if … available")
 // Also checks the JSON manifests parse and agree on name/version/URL. No dependencies.
 import { readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
@@ -63,11 +62,6 @@ for (const dir of skills) {
     const t = tools.get(r);
     if (!t) {
       err(`${dir}: references unknown tool \`${r}\` (not in tools.json)`);
-      continue;
-    }
-    if (t.pr > 1) {
-      const ctx = body.split("\n").filter((l) => l.includes(`\`${r}\``)).join(" ");
-      if (!/if [^.]*available/i.test(ctx)) err(`${dir}: \`${r}\` ships later; frame it as optional ("If \`${r}\` is available …")`);
     }
   }
   console.log(`✓ ${dir} (${lines} lines, ${refs.size} tool refs)`);
