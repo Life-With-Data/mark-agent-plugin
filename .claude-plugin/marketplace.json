@@ -14,7 +14,7 @@
       "source": "./",
       "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace.",
       "version": "0.1.0",
-      "author": { "name": "Life With Data" },
+      "author": { "name": "Life With Data", "email": "anthony@lifewithdata.org" },
       "homepage": "https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents",
       "repository": "https://github.com/Life-With-Data/mark-agent-plugin",
       "license": "MIT",

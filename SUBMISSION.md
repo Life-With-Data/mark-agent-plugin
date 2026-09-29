@@ -9,8 +9,8 @@ Status (2026-09-28): scaffold complete. Blocked on the MCP server going live in 
 - [ ] MCP server live at `https://app.mark.lifewithdata.org/mcp` (prod), with OAuth working end to end from Claude, ChatGPT and Cursor.
 - [ ] Prod Clerk configured to mirror dev (see `clerk-prod-changes.md` in the controller workspace): DCR, CIMD, PKCE, `default_scopes` with `user:org:read`, JWT access tokens, `aud` claim. Decide whether CIMD is open or an allowlist. **TODO(Anthony): approve the prod Clerk changes.**
 - [ ] Public docs page live: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents
-- [ ] **Privacy policy URL. TODO(Anthony).** `https://mark.lifewithdata.org/legal/privacy` is currently a placeholder shell. The policy must cover data accessed through MCP (workspace content, analytics, and what AI clients receive).
-- [ ] **Security / support contact. TODO(Anthony)** (email). Add it to `SECURITY.md` and the `author.email` fields.
+- [x] **Privacy policy URL.** https://www.lifewithdata.org/privacy. Terms: https://www.lifewithdata.org/terms. The policy must cover data accessed through MCP (workspace content, analytics, and what AI clients receive).
+- [x] **Security / support contact.** anthony@lifewithdata.org (in `SECURITY.md` and `author.email`).
 - [ ] **Reviewer test account. TODO(Anthony):** a dedicated **prod** Clerk user in a demo organization with populated data (posts in every status, performance data, a site with an audit, saved keywords, buyer questions). Don't use the Playwright dev user.
 - [ ] Logo/icon (square PNG or SVG) and short and long descriptions, approved by Anthony.
 - [ ] `tools.json` matches the live server (`mark-mcp tools --expect tools.json` from the test client passes).

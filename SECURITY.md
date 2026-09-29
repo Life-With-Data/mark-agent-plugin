@@ -3,7 +3,7 @@
 ## Reporting a vulnerability
 Please report security issues privately. **Do not open a public GitHub issue.**
 
-- Email: **TODO(Anthony): security contact address**
+- Email: **anthony@lifewithdata.org**
 - Or use GitHub's private vulnerability reporting: **Security → Report a vulnerability** on this repository.
 
 We aim to acknowledge reports within 2 business days.
@@ -15,4 +15,5 @@ We aim to acknowledge reports within 2 business days.
 ## How the plugin handles data
 - The plugin contains no code that runs on your machine and no secrets. It points your AI client at Mark's MCP server and adds skill instructions.
 - Authentication is standard OAuth in your AI client. Mark never sees your AI client's credentials, and your client never sees your Mark password.
-- Privacy policy: **TODO(Anthony): privacy policy URL**
+- Privacy policy: **https://www.lifewithdata.org/privacy**
+- Terms: **https://www.lifewithdata.org/terms**
