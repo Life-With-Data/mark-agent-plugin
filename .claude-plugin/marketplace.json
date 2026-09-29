@@ -12,7 +12,7 @@
     {
       "name": "mark",
       "source": "./",
-      "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. 56 MCP tools.",
+      "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. 57 MCP tools.",
       "version": "0.2.1",
       "author": { "name": "Life With Data", "email": "anthony@lifewithdata.org" },
       "homepage": "https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents",
