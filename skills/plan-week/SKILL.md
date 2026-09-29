@@ -31,7 +31,7 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
    - Call `get_channel_rules` for each channel you're writing for (length, hashtags, links, media) and follow them exactly.
    - For media, `search_assets` then `get_asset` to pick existing images or video. Use `add_asset` only when the user provides a URL or file.
    - Call `save_post` (omit `postId`; set `channel`, `body`, media, angle, pillar, and `scheduledAt` as ISO 8601). It creates a draft and never publishes. Keep the returned `postId` and `rev`.
-5. **✋ Checkpoint 2: before review.** Show every draft (channel, time, full text, media). Ask: **"Send these ‹N› drafts to review in Mark?"** Before asking, check the channel settings from `get_workspace`. **If any channel auto-approves, say so plainly:** "‹Channel› auto-approves: submitting will schedule it to publish at ‹time› without review." Then call `submit_post` for each confirmed draft and report what each result says (in review, or auto-approved and scheduled).
+5. **✋ Checkpoint 2: before review.** Show every draft (channel, time, full text, media). Ask: **"Send these ‹N› drafts to review in Mark?"** Before asking, check each channel's approval mode with `list_channels`. **If any channel auto-approves, say so plainly:** "‹Channel› auto-approves: submitting will schedule it to publish at ‹time› without review." Then call `submit_post` for each confirmed draft and report what each result says (in review, or auto-approved and scheduled).
 6. **Approval is the user's call.** Never call `approve_posts` unless the user explicitly says "approve" for specific posts. Then pass each post's current `rev` from `get_post`. **Approved posts publish automatically at their scheduled time.** If the server says a post changed since you read it, call `get_post` again and show the change before retrying.
 7. **Finish** with a summary: a table of drafts with status and links (`appUrl`), anything skipped and why, and the next step ("Review them in Mark → Review queue").
 
@@ -42,7 +42,7 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
 ## When things go wrong
 - **No open slots:** offer to plan into specific days the user names. To change recurring slots, ask first, then `update_posting_slots`.
 - **No performance data yet** (new workspace): plan from pillars and angles only, and say so.
-- **A channel is disconnected** (`get_workspace` or `list_connections` shows it unhealthy): skip it, call `get_connect_link`, give the user the link, then `sync_connections` after they say they're done.
+- **A channel is disconnected** (`list_channels` shows `connected: false`): skip it, call `get_connect_link` with that channel, give the user the link, then call `sync_connections` and `list_channels` to confirm after they say they're done. `list_connections` shows integrations, not individual social accounts.
 - **A post is locked or already published:** report the error text and move on. Never work around it.
 - **Cleanup a draft:** only after an explicit yes. Prefer `archive_post` if they might want it back. `delete_post` is permanent and only works on never-submitted drafts.
 - **Don't invent** metrics, testimonials, prices or claims. If a draft needs a fact you don't have, leave a clear `[confirm: …]` placeholder and flag it at Checkpoint 2.
