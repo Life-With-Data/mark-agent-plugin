@@ -1,0 +1,25 @@
+{
+  "name": "mark-gtm",
+  "owner": {
+    "name": "Life With Data",
+    "url": "https://mark.lifewithdata.org"
+  },
+  "metadata": {
+    "description": "Mark go-to-market plugins from Life With Data.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "mark",
+      "source": "./",
+      "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace.",
+      "version": "0.1.0",
+      "author": { "name": "Life With Data" },
+      "homepage": "https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents",
+      "repository": "https://github.com/Life-With-Data/mark-agent-plugin",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["marketing", "social-media", "seo", "ai-visibility"]
+    }
+  ]
+}

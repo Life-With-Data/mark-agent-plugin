@@ -1,0 +1,656 @@
+{
+  "$comment": "Lockfile of Mark MCP tool names, titles and annotations (source: mark-mcp plan.md). scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "server": "https://app.mark.lifewithdata.org/mcp",
+  "tools": [
+    {
+      "name": "get_workspace",
+      "title": "Get Workspace",
+      "group": "Workspace and brand",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_brand_context",
+      "title": "Get Brand Context",
+      "group": "Workspace and brand",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "update_brand_profile",
+      "title": "Update Brand Profile",
+      "group": "Workspace and brand",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "save_strategy_item",
+      "title": "Save Strategy Item",
+      "group": "Workspace and brand",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "delete_strategy_item",
+      "title": "Delete Strategy Item",
+      "group": "Workspace and brand",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_channel_rules",
+      "title": "Get Channel Rules",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "search_posts",
+      "title": "Search Posts",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_post",
+      "title": "Get Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_calendar",
+      "title": "Get Calendar",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "save_post",
+      "title": "Save Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "submit_post",
+      "title": "Submit Post for Review",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "approve_posts",
+      "title": "Approve Posts",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "review_post",
+      "title": "Request Changes or Reject",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "comment_on_post",
+      "title": "Comment on Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "reschedule_post",
+      "title": "Reschedule Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "update_posting_slots",
+      "title": "Update Posting Slots",
+      "group": "Content: posts, review, calendar",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "update_channel_settings",
+      "title": "Update Channel Settings",
+      "group": "Content: posts, review, calendar",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "resolve_external_post",
+      "title": "Resolve External Post",
+      "group": "Content: posts, review, calendar",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "search_assets",
+      "title": "Search Assets",
+      "group": "Assets",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_asset",
+      "title": "Get Asset",
+      "group": "Assets",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "add_asset",
+      "title": "Add Asset",
+      "group": "Assets",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "update_asset",
+      "title": "Update Asset",
+      "group": "Assets",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "delete_assets",
+      "title": "Delete Assets",
+      "group": "Assets",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_content_performance",
+      "title": "Get Content Performance",
+      "group": "Performance",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_search_performance",
+      "title": "Get Search Performance",
+      "group": "Performance",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "inspect_url",
+      "title": "Inspect URL",
+      "group": "Performance",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "research_keywords",
+      "title": "Research Keywords",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": true
+    },
+    {
+      "name": "check_keyword_audience",
+      "title": "Check Keyword Audience",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": true
+    },
+    {
+      "name": "list_saved_keywords",
+      "title": "List Saved Keywords",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "save_keywords",
+      "title": "Save Keywords",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "remove_keywords",
+      "title": "Remove Keywords",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "analyze_domain",
+      "title": "Analyze Domain",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": true
+    },
+    {
+      "name": "get_rankings",
+      "title": "Get Rankings",
+      "group": "Keywords and competitors",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "run_rank_check",
+      "title": "Run Rank Check",
+      "group": "Keywords and competitors",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": true
+    },
+    {
+      "name": "submit_urls_to_indexnow",
+      "title": "Submit URLs to IndexNow",
+      "group": "Keywords and competitors",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "list_sites",
+      "title": "List Sites",
+      "group": "Websites and site health",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_site_audit",
+      "title": "Get Site Audit",
+      "group": "Websites and site health",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "run_site_audit",
+      "title": "Run Site Audit",
+      "group": "Websites and site health",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": true
+    },
+    {
+      "name": "check_site_readiness",
+      "title": "Check Site Readiness",
+      "group": "Websites and site health",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "save_site",
+      "title": "Save Site",
+      "group": "Websites and site health",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "delete_site",
+      "title": "Delete Site",
+      "group": "Websites and site health",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "set_check_cadence",
+      "title": "Set Check Cadence",
+      "group": "Websites and site health",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_ai_visibility",
+      "title": "Get AI Visibility",
+      "group": "AI visibility",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "refresh_ai_volume",
+      "title": "Refresh AI Search Volume",
+      "group": "AI visibility",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": true
+    },
+    {
+      "name": "check_ai_assistant_tracking",
+      "title": "Check AI Assistant Tracking",
+      "group": "AI visibility",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "list_connections",
+      "title": "List Connections",
+      "group": "Connections",
+      "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "sync_connections",
+      "title": "Sync Connections",
+      "group": "Connections",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "update_connection_settings",
+      "title": "Update Connection Settings",
+      "group": "Connections",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "disconnect_connection",
+      "title": "Disconnect Account",
+      "group": "Connections",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "send_setup_checklist",
+      "title": "Email Setup Checklist",
+      "group": "Connections",
+      "pr": 2,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    }
+  ]
+}

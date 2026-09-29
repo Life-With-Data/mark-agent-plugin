@@ -1,0 +1,44 @@
+name: validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Skills, tool names and manifests
+        run: node scripts/check-skills.mjs
+      - name: Install Claude Code CLI (validator only; no login needed)
+        run: npm install --global @anthropic-ai/claude-code@2
+      - name: claude plugin validate --strict (marketplace)
+        run: claude plugin validate --strict .claude-plugin/marketplace.json
+      - name: claude plugin validate --strict (plugin manifest)
+        run: claude plugin validate --strict .claude-plugin/plugin.json
+      - name: claude plugin validate --strict (skills)
+        run: claude plugin validate --strict skills
+      - name: Directory hygiene (no .DS_Store, secrets or large/binary files)
+        run: |
+          set -euo pipefail
+          if git ls-files | grep -E '(^|/)\.DS_Store$|\.env'; then echo "::error::remove .DS_Store/.env files"; exit 1; fi
+          big=$(git ls-files -z | xargs -0 -I{} find {} -size +256k); if [ -n "$big" ]; then echo "::error::files over 256 KiB: $big"; exit 1; fi
+          count=$(git ls-files | wc -l); if [ "$count" -gt 512 ]; then echo "::error::more than 512 files"; exit 1; fi
+          if git ls-files -z | xargs -0 grep -IL . | grep .; then echo "::error::binary files found"; exit 1; fi
+          if git grep -nE '(sk_(live|test)_[A-Za-z0-9]{10,}|ghp_[A-Za-z0-9]{20,}|AKIA[0-9A-Z]{16})'; then echo "::error::possible secret"; exit 1; fi
+      - name: Agent Plugins manifests match their schemas
+        run: |
+          set -euo pipefail
+          curl -fsSL https://agent-plugins.org/schemas/1.0.0/plugin.schema.json -o "$RUNNER_TEMP/plugin.schema.json"
+          curl -fsSL https://agent-plugins.org/schemas/1.0.0/mcp.schema.json -o "$RUNNER_TEMP/mcp.schema.json"
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s "$RUNNER_TEMP/plugin.schema.json" -d plugin.json
+          npx --yes ajv-cli@5 validate --spec=draft2020 -s "$RUNNER_TEMP/mcp.schema.json" -d mcp.json

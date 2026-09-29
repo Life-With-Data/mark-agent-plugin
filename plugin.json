@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "mark",
+  "version": "0.1.0",
+  "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. Connects to Mark's MCP server and adds five marketing skills.",
+  "author": {
+    "name": "Life With Data",
+    "url": "https://mark.lifewithdata.org"
+  },
+  "homepage": "https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents",
+  "repository": "https://github.com/Life-With-Data/mark-agent-plugin",
+  "license": "MIT",
+  "keywords": ["marketing", "social-media", "content-calendar", "seo", "ai-visibility", "approvals"]
+}
