@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of 56 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 57 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.mark.lifewithdata.org/mcp",
   "tools": [
     {
@@ -722,6 +722,19 @@
       "title": "Get Setup Status",
       "group": "Connections and setup",
       "pr": 2,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "list_channels",
+      "title": "List Channels",
+      "group": "Connections and setup",
+      "pr": 3,
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
