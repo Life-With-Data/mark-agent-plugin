@@ -24,7 +24,7 @@ You explain where the business stands in AI-assistant answers and what to do abo
 4. **✋ Checkpoint: paid refresh.** `refresh_ai_volume` spends provider credit. Ask: **"Re-estimate AI search volume for your buyer questions? This is a paid lookup."** Only call it on a yes. Otherwise use the existing figures and say how old they are.
 5. **Answer content (optional).** For the top 1–3 gaps, offer an FAQ or blog answer draft. For each accepted one:
    - `get_channel_rules` for the channel (usually blog);
-   - `save_post` to create a draft that answers the question in the first two sentences, then supports it.
+   - `save_post` to create a draft that answers the question in the first two sentences, then supports it. For the blog channel, set `body` plus `meta.title`, `meta.slug`, and `meta.seo` (with `title` and `description`).
 
    **✋ Checkpoint:** show the drafts and ask **"Send these to review?"** before `submit_post`. Never approve them.
 6. **Summarize:** what you tracked, what you drafted (with `appUrl` links), readiness fixes for the site owner, and when to check again (for example after the next weekly readiness scan).
