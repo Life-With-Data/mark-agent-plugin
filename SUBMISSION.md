@@ -3,7 +3,7 @@
 Where Mark's plugin and MCP server get listed, and what each listing needs.
 **Nothing is submitted without Anthony's explicit OK.** Items marked **TODO(Anthony)** need a decision or an asset from him.
 
-Status (2026-09-28): scaffold complete. Blocked on the MCP server going live in production (PRs 1–2 in `Life-With-Data/mark`), the prod Clerk configuration, and the TODOs below.
+Status (2026-09-29): `tools.json` is 56 tools, matching the live MCP server. Still blocked on the prod Clerk configuration and the TODOs below.
 
 ## Shared prerequisites (every listing)
 - [ ] MCP server live at `https://app.mark.lifewithdata.org/mcp` (prod), with OAuth working end to end from Claude, ChatGPT and Cursor.

@@ -11,6 +11,12 @@ You explain where the business stands in AI-assistant answers and what to do abo
 - If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
 - Call `get_workspace` and name the workspace.
 
+## Setup
+Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
+- Missing market: ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
+- Missing site: ask for the hostname, then `save_site`.
+- Missing LinkedIn/social or Google: `get_connect_link`, give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
+
 ## Procedure
 1. **Current state** (read-only):
    - `get_ai_visibility`: tracked buyer questions and suggestions, AI search volume, AI-assistant referral traffic, readiness, and answer-engine results where available.

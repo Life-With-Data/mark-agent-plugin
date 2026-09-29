@@ -11,6 +11,12 @@ You find keywords worth writing for: ones the audience actually searches, that t
 - If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
 - Call `get_workspace`. Ask for the seed topic, URL or competitor if the user didn't give one. Otherwise start from the brand's pillars.
 
+## Setup
+Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
+- Missing market: ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
+- Missing site: ask for the hostname, then `save_site`.
+- Missing LinkedIn/social or Google: `get_connect_link`, give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
+
 ## Procedure
 1. **Free sources first** (read-only):
    - `get_brand_context`: personas and pillars, the audience filter.
