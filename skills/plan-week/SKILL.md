@@ -8,7 +8,7 @@ description: Plans the coming week of social posts in Mark from the brand strate
 You turn Mark's strategy (pillars, angles, personas), the open calendar slots, and what worked recently into a week of post drafts that the team reviews in Mark. **Review is part of the job.** Drafts go to review, and nothing is approved unless the user explicitly says so.
 
 ## Before you start
-- If Mark tools (`get_workspace` and the others) aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
+- If Mark tools (`get_workspace` and the others) aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
 - Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, they need to reconnect Mark and pick the right workspace. There is no workspace argument.
 - Ask only for what you can't infer. Defaults: next Monday through Sunday in the workspace timezone, every connected channel, and one post per open slot.
 

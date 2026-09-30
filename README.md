@@ -1,14 +1,14 @@
 # Mark for AI agents
 
-Connect Claude, ChatGPT, Grok, Cursor, VS Code, Codex, Windsurf and other AI agents to your [Mark](https://mark.lifewithdata.org) workspace. From your agent you can plan and draft posts, send them to review, approve what's waiting on you, check how content and search are performing, see how AI assistants find you, and research keywords. The agent acts as you, in the one workspace you pick when you sign in.
+Connect Claude, ChatGPT, Grok, Cursor, VS Code, Codex, Windsurf and other AI agents to your [Mark](https://www.use-mark.com) workspace. From your agent you can plan and draft posts, send them to review, approve what's waiting on you, check how content and search are performing, see how AI assistants find you, and research keywords. The agent acts as you, in the one workspace you pick when you sign in.
 
 This repo is:
 - **the `mark` plugin:** Mark's MCP server plus five skills, for Claude Code, Claude, Cursor, VS Code, Codex, Grok Bot and other clients that read Claude or [Agent Plugins](https://agent-plugins.org) manifests;
 - **the `mark-gtm` marketplace** that lists it.
 
-The Mark MCP server (`https://app.mark.lifewithdata.org/mcp`) is live. **56 tools.** Sign in, pick a workspace, click Allow.
+The Mark MCP server (`https://app.use-mark.com/mcp`) is live. **56 tools.** Sign in, pick a workspace, click Allow.
 
-Full guide: **[Use Mark from AI agents](https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents)**
+Full guide: **[Use Mark from AI agents](https://docs.use-mark.com/docs/use-mark-from-ai-agents)**
 
 ## Skills
 
@@ -39,14 +39,14 @@ Every skill stops at explicit checkpoints before it creates, sends, spends credi
 
 ## Install
 
-Server URL for every client: `https://app.mark.lifewithdata.org/mcp`. On first use you sign in to Mark, **choose a workspace**, and click **Allow**. There are no API keys.
+Server URL for every client: `https://app.use-mark.com/mcp`. On first use you sign in to Mark, **choose a workspace**, and click **Allow**. There are no API keys.
 
 ### Claude Code: plugin (MCP + skills)
 ```bash
 claude plugin marketplace add Life-With-Data/mark-agent-plugin
 claude plugin install mark@mark-gtm
 ```
-Then run `/mcp`, select **mark**, and choose **Authenticate**. MCP only: `claude mcp add --transport http mark https://app.mark.lifewithdata.org/mcp`.
+Then run `/mcp`, select **mark**, and choose **Authenticate**. MCP only: `claude mcp add --transport http mark https://app.use-mark.com/mcp`.
 
 ### Claude (claude.ai, Claude Desktop)
 Go to **Settings → Connectors → Add custom connector**, name it `Mark`, paste the URL, choose **Connect**, sign in, and pick your workspace. On Team and Enterprise plans an owner adds it under organization connectors. On plans with plugins, you can add this repo as a plugin marketplace instead to get the skills too.
@@ -58,37 +58,37 @@ Go to **Settings → Apps & Connectors → Advanced**, turn on **Developer mode*
 Go to **grok.com/connectors → New Connector → Custom**, paste the URL, and sign in. On Business and Enterprise, an admin provisions the connector in the xAI console first.
 
 ### Grok Bot
-Tell your bot: *"Add a custom MCP server called mark at https://app.mark.lifewithdata.org/mcp"*. Confirm, then click **Authorize** on the connect card and pick your workspace. Team admins may need to allow the URL in the MCP allowlist.
+Tell your bot: *"Add a custom MCP server called mark at https://app.use-mark.com/mcp"*. Confirm, then click **Authorize** on the connect card and pick your workspace. Team admins may need to allow the URL in the MCP allowlist.
 
 ### Cursor
 [**Add to Cursor**](https://cursor.com/en/install-mcp?name=mark&config=eyJ1cmwiOiJodHRwczovL2FwcC5tYXJrLmxpZmV3aXRoZGF0YS5vcmcvbWNwIn0%3D), or add this to `~/.cursor/mcp.json`:
 ```json
-{ "mcpServers": { "mark": { "url": "https://app.mark.lifewithdata.org/mcp" } } }
+{ "mcpServers": { "mark": { "url": "https://app.use-mark.com/mcp" } } }
 ```
 Then go to **Settings → MCP** and choose **Connect** next to mark. For the skills, see [Skills only](#skills-only-any-agent) below.
 
 ### VS Code (GitHub Copilot)
-[**Install in VS Code**](https://vscode.dev/redirect/mcp/install?name=mark&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.mark.lifewithdata.org%2Fmcp%22%7D), or add this to `.vscode/mcp.json`:
+[**Install in VS Code**](https://vscode.dev/redirect/mcp/install?name=mark&config=%7B%22type%22%3A%22http%22%2C%22url%22%3A%22https%3A%2F%2Fapp.use-mark.com%2Fmcp%22%7D), or add this to `.vscode/mcp.json`:
 ```json
-{ "servers": { "mark": { "type": "http", "url": "https://app.mark.lifewithdata.org/mcp" } } }
+{ "servers": { "mark": { "type": "http", "url": "https://app.use-mark.com/mcp" } } }
 ```
 Choose **Start** above the server entry, then sign in.
 
 ### Codex (CLI, IDE extension, app)
 ```bash
-codex mcp add mark --url https://app.mark.lifewithdata.org/mcp
+codex mcp add mark --url https://app.use-mark.com/mcp
 codex mcp login mark
 ```
 Or add this to `~/.codex/config.toml`:
 ```toml
 [mcp_servers.mark]
-url = "https://app.mark.lifewithdata.org/mcp"
+url = "https://app.use-mark.com/mcp"
 ```
 
 ### Windsurf
 Add this to `~/.codeium/windsurf/mcp_config.json`, then refresh the MCP panel and sign in:
 ```json
-{ "mcpServers": { "mark": { "serverUrl": "https://app.mark.lifewithdata.org/mcp" } } }
+{ "mcpServers": { "mark": { "serverUrl": "https://app.use-mark.com/mcp" } } }
 ```
 
 ### Muse (Meta)

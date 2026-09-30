@@ -2,7 +2,7 @@
   "mcpServers": {
     "mark": {
       "type": "http",
-      "url": "https://app.mark.lifewithdata.org/mcp"
+      "url": "https://app.use-mark.com/mcp"
     }
   }
 }
