@@ -442,7 +442,7 @@
         "idempotentHint": true,
         "openWorldHint": false
       },
-      "paid": false
+      "paid": true
     },
     {
       "name": "remove_keywords",

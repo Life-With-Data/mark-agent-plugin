@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "mark",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. Connects to Mark's MCP server (56 tools) and adds five marketing skills.",
   "author": {
     "name": "Life With Data",
