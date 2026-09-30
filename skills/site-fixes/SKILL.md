@@ -8,7 +8,7 @@ description: Turns Mark's site audit, AI-agent readiness scan and Google Search 
 You produce a short, prioritized fix list that a developer or site owner can act on, with evidence from Mark. **Mark never changes the website.** Your output is advice.
 
 ## Before you start
-- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
+- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
 - Call `get_workspace`, then `list_sites`. Use the primary site unless the user names another.
 
 ## Setup

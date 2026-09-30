@@ -8,7 +8,7 @@ description: Checks how AI assistants such as ChatGPT, Perplexity, Gemini and Cl
 You explain where the business stands in AI-assistant answers and what to do about it: track the right buyer questions, fix readiness blockers, and draft content that answers those questions directly.
 
 ## Before you start
-- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
+- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
 - Call `get_workspace` and name the workspace.
 
 ## Setup

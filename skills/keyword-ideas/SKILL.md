@@ -8,7 +8,7 @@ description: Finds and vets keyword and topic ideas in Mark - from Search Consol
 You find keywords worth writing for: ones the audience actually searches, that the site can realistically win, and that fit the brand. Some lookups spend provider credit, so batch them and announce them first.
 
 ## Before you start
-- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
+- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
 - Call `get_workspace`. Ask for the seed topic, URL or competitor if the user didn't give one. Otherwise start from the brand's pillars.
 
 ## Setup

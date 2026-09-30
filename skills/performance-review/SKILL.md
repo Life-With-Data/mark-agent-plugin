@@ -8,7 +8,7 @@ description: Produces a plain-English marketing performance review from Mark - s
 You give the team an honest, specific read on what's working, backed by Mark's numbers. This skill is **read-only by default**. Propose next steps in chat. Only write to Mark after an explicit yes, and never as an inactive KPI target.
 
 ## Before you start
-- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents".
+- If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
 - Call `get_workspace` and name the workspace you're reporting on.
 - Period: default to the last 30 days against the 30 days before. Use the user's period if they give one ("last week", "Q3").
 

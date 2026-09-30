@@ -6,9 +6,9 @@ Where Mark's plugin and MCP server get listed, and what each listing needs.
 Status (2026-09-29): `tools.json` is 56 tools, matching the live MCP server. Still blocked on the prod Clerk configuration and the TODOs below.
 
 ## Shared prerequisites (every listing)
-- [ ] MCP server live at `https://app.mark.lifewithdata.org/mcp` (prod), with OAuth working end to end from Claude, ChatGPT and Cursor.
+- [ ] MCP server live at `https://app.use-mark.com/mcp` (prod), with OAuth working end to end from Claude, ChatGPT and Cursor.
 - [ ] Prod Clerk configured to mirror dev (see `clerk-prod-changes.md` in the controller workspace): DCR, CIMD, PKCE, `default_scopes` with `user:org:read`, JWT access tokens, `aud` claim. Decide whether CIMD is open or an allowlist. **TODO(Anthony): approve the prod Clerk changes.**
-- [ ] Public docs page live: https://docs.mark.lifewithdata.org/docs/use-mark-from-ai-agents
+- [ ] Public docs page live: https://docs.use-mark.com/docs/use-mark-from-ai-agents
 - [x] **Privacy policy URL.** https://www.lifewithdata.org/privacy. Terms: https://www.lifewithdata.org/terms. The policy must cover data accessed through MCP (workspace content, analytics, and what AI clients receive).
 - [x] **Security / support contact.** anthony@lifewithdata.org (in `SECURITY.md` and `author.email`).
 - [ ] **Reviewer test account. TODO(Anthony):** a dedicated **prod** Clerk user in a demo organization with populated data (posts in every status, performance data, a site with an audit, saved keywords, buyer questions). Don't use the Playwright dev user.
@@ -35,7 +35,7 @@ Same portal, separate submission. Docs: [review criteria](https://claude.com/doc
 - [ ] Callback allowed: `https://claude.ai/api/mcp/auth_callback` and `https://claude.com/api/mcp/auth_callback` (DCR/CIMD registrations carry these; verify on prod)
 - [ ] Every tool has a `title` and explicit `readOnlyHint`/`destructiveHint` (plus `idempotentHint`/`openWorldHint`). Read and write are separate, there's no catch-all tool, names are ≤64 chars, and descriptions contain no injection-style wording. The inventory snapshot test in the mark repo enforces this.
 - [ ] Reasonable response sizes (≤~10k tokens) and plain-English errors
-- [ ] First-party domain (`app.mark.lifewithdata.org`) ✅
+- [ ] First-party domain (`app.use-mark.com`) ✅
 - [ ] Tested with MCP Inspector and as a custom connector in claude.ai; the box test client transcripts are attached
 - [ ] Public docs, privacy policy and reviewer account (see above)
 - [ ] Submit. **Anthony's OK required.**
