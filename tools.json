@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of 57 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 63 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.use-mark.com/mcp",
   "tools": [
     {
@@ -737,6 +737,84 @@
       "pr": 3,
       "annotations": {
         "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "list_competitors",
+      "title": "List Competitors",
+      "group": "Keywords and competitors",
+      "pr": 4,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "track_competitor",
+      "title": "Track Competitor",
+      "group": "Keywords and competitors",
+      "pr": 4,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "untrack_competitor",
+      "title": "Untrack Competitor",
+      "group": "Keywords and competitors",
+      "pr": 4,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_competitor_scorecard",
+      "title": "Get Competitor Scorecard",
+      "group": "Keywords and competitors",
+      "pr": 4,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_competitor_ai_detail",
+      "title": "Get Competitor AI Detail",
+      "group": "Keywords and competitors",
+      "pr": 4,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "save_content_exclusion",
+      "title": "Save Content Exclusion",
+      "group": "Workspace and brand",
+      "pr": 4,
+      "annotations": {
+        "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
