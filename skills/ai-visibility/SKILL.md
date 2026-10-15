@@ -29,8 +29,8 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
 3. **✋ Checkpoint: new buyer questions.** Propose up to 10 questions in the buyer's own words. Ask: **"Track these ‹N› buyer questions in Mark?"** On a yes, call `save_strategy_item` with `kind: "buyer_question"` for each.
 4. **✋ Checkpoint: paid refresh.** `refresh_ai_volume` spends provider credit. Ask: **"Re-estimate AI search volume for your buyer questions? This is a paid lookup."** Only call it on a yes. Otherwise use the existing figures and say how old they are.
 5. **Answer content (optional).** For the top 1–3 gaps, offer an FAQ or blog answer draft. For each accepted one:
-   - `get_channel_rules` for the channel (usually blog);
-   - `save_post` to create a draft that answers the question in the first two sentences, then supports it. For the blog channel, set `body` plus `meta.title`, `meta.slug`, and `meta.seo` (with `title` and `description`).
+   - `get_drafting_guide` for the channel (usually blog), and draft against it;
+   - `save_post` with the guide's `guideVersion` to create a draft that answers the question in the first two sentences, then supports it. For the blog channel, set `body` plus `meta.title`, `meta.slug`, and `meta.seo` (with `title` and `description`).
 
    **✋ Checkpoint:** show the drafts and ask **"Send these to review?"** before `submit_post`. Never approve them.
 6. **Summarize:** what you tracked, what you drafted (with `appUrl` links), readiness fixes for the site owner, and when to check again (for example after the next weekly readiness scan).
