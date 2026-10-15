@@ -3,7 +3,7 @@
 Connect Claude, ChatGPT, Grok, Cursor, VS Code, Codex, Windsurf and other AI agents to your [Mark](https://www.use-mark.com) workspace. From your agent you can plan and draft posts, send them to review, approve what's waiting on you, check how content and search are performing, see how AI assistants find you, and research keywords. The agent acts as you, in the one workspace you pick when you sign in.
 
 This repo is:
-- **the `mark` plugin:** Mark's MCP server plus five skills, for Claude Code, Claude, Cursor, VS Code, Codex, Grok Bot and other clients that read Claude or [Agent Plugins](https://agent-plugins.org) manifests;
+- **the `mark` plugin:** Mark's MCP server plus its skills, for Claude Code, Claude, Cursor, VS Code, Codex, Grok Bot and other clients that read Claude or [Agent Plugins](https://agent-plugins.org) manifests;
 - **the `mark-gtm` marketplace** that lists it.
 
 The Mark MCP server (`https://app.use-mark.com/mcp`) is live. **78 tools.** Sign in, pick a workspace, click Allow.
@@ -12,13 +12,9 @@ Full guide: **[Use Mark from AI agents](https://docs.use-mark.com/docs/use-mark-
 
 ## Skills
 
-| Skill | What it does | Try |
-|---|---|---|
-| `plan-week` | Plans next week's posts from your pillars, open calendar slots and recent performance, writes the drafts, and sends them to review after you OK them. | "Plan next week's LinkedIn posts." |
-| `performance-review` | A plain-English report on social, search, rankings and AI visibility against your KPI targets, with next steps. | "How did marketing do last month?" |
-| `ai-visibility` | How AI assistants see you: buyer questions, AI search volume, readiness gaps, and answer-style drafts. | "Do we show up in ChatGPT?" |
-| `site-fixes` | A prioritized fix list for your website from Mark's audit, readiness scan and Search Console. Advice only. | "Why isn't our pricing page indexed?" |
-| `keyword-ideas` | Finds and vets keywords, saves the shortlist, and writes a brief as a draft. | "Keyword ideas for LinkedIn approval workflows." |
+The skill list, what each one does and example prompts: **[Add Mark skills and the plugin](https://docs.use-mark.com/skills-and-plugin)**.
+
+Skills are authored in [Life-With-Data/mark](https://github.com/Life-With-Data/mark) (`apps/app/plugin/skills`) and synced here with a version bump after each Mark release. Edit them there, not here.
 
 Every skill stops at explicit checkpoints before it creates, sends, spends credit or approves anything. In Claude Code they run as `/mark:plan-week` and so on, or trigger automatically from what you ask.
 
@@ -61,7 +57,7 @@ Go to **grok.com/connectors → New Connector → Custom**, paste the URL, and s
 Tell your bot: *"Add a custom MCP server called mark at https://app.use-mark.com/mcp"*. Confirm, then click **Authorize** on the connect card and pick your workspace. Team admins may need to allow the URL in the MCP allowlist.
 
 ### Cursor
-[**Add to Cursor**](https://cursor.com/en/install-mcp?name=mark&config=eyJ1cmwiOiJodHRwczovL2FwcC5tYXJrLmxpZmV3aXRoZGF0YS5vcmcvbWNwIn0%3D), or add this to `~/.cursor/mcp.json`:
+[**Add to Cursor**](https://cursor.com/en/install-mcp?name=mark&config=eyJ1cmwiOiJodHRwczovL2FwcC51c2UtbWFyay5jb20vbWNwIn0%3D), or add this to `~/.cursor/mcp.json`:
 ```json
 { "mcpServers": { "mark": { "url": "https://app.use-mark.com/mcp" } } }
 ```
@@ -117,7 +113,7 @@ The skills need the Mark MCP connection above to do anything.
 .claude-plugin/marketplace.json  Claude marketplace (name: mark-gtm)
 .mcp.json                        Claude MCP config (remote HTTP)
 plugin.json, mcp.json            Agent Plugins 1.0 manifests (same plugin, other clients)
-skills/<name>/SKILL.md           The five skills (Agent Skills format)
+skills/<name>/SKILL.md           The skills (Agent Skills format), synced from Mark
 tools.json                       Lockfile of 78 Mark MCP tool names, titles and annotations
 scripts/check-skills.mjs         Checks skills, tool references and manifests (run in CI)
 ```
@@ -130,7 +126,7 @@ npx @anthropic-ai/claude-code plugin validate --strict .claude-plugin/marketplac
 npx @anthropic-ai/claude-code plugin validate --strict .claude-plugin/plugin.json
 npx @anthropic-ai/claude-code plugin validate --strict skills
 ```
-When a tool is added or renamed in Mark, update `tools.json` in the same change, and CI fails if a skill references a tool that doesn't exist. Bump `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and `plugin.json` together.
+Mark's CI opens a pull request here after each production deploy that syncs `skills/` and `tools.json` and bumps `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` and `plugin.json` together. CI fails if a skill references a tool that doesn't exist.
 
 Issues and security reports: see [SECURITY.md](SECURITY.md).
 

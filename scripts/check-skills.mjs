@@ -15,7 +15,9 @@ const err = (m) => errors.push(m);
 const lock = JSON.parse(readFileSync(join(root, "tools.json"), "utf8"));
 const tools = new Map(lock.tools.map((t) => [t.name, t]));
 // Enum values that appear in backticks but are not tools.
-const NON_TOOLS = new Set(["buyer_question", "kpi_target", "top_pages", "page_keywords", "awaiting_review", "changes_requested"]);
+const NON_TOOLS = new Set(["buyer_question", "kpi_target", "top_pages", "page_keywords", "awaiting_review", "changes_requested",
+  // Channel values with an underscore.
+  "competitor_page", "landing_page", "meta_ads", "google_ads"]);
 
 const skillsDir = join(root, "skills");
 const skills = readdirSync(skillsDir).filter((d) => statSync(join(skillsDir, d)).isDirectory());
