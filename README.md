@@ -6,7 +6,7 @@ This repo is:
 - **the `mark` plugin:** Mark's MCP server plus its skills, for Claude Code, Claude, Cursor, VS Code, Codex, Grok Bot and other clients that read Claude or [Agent Plugins](https://agent-plugins.org) manifests;
 - **the `mark-gtm` marketplace** that lists it.
 
-The Mark MCP server (`https://app.use-mark.com/mcp`) is live. **88 tools.** Sign in, pick a workspace, click Allow.
+The Mark MCP server (`https://app.use-mark.com/mcp`) is live. **93 tools.** Sign in, pick a workspace, click Allow.
 
 Full guide: **[Use Mark from AI agents](https://docs.use-mark.com/docs/use-mark-from-ai-agents)**
 
@@ -20,7 +20,7 @@ Every skill stops at explicit checkpoints before it creates, sends, spends credi
 
 ## Tools
 
-88 tools on the live server (`tools.json`), in these groups:
+93 tools on the live server (`tools.json`), in these groups:
 
 - Workspace and brand
 - Strategy and brand
@@ -114,7 +114,7 @@ The skills need the Mark MCP connection above to do anything.
 .mcp.json                        Claude MCP config (remote HTTP)
 plugin.json, mcp.json            Agent Plugins 1.0 manifests (same plugin, other clients)
 skills/<name>/SKILL.md           The skills (Agent Skills format), synced from Mark
-tools.json                       Lockfile of 88 Mark MCP tool names, titles and annotations
+tools.json                       Lockfile of 93 Mark MCP tool names, titles and annotations
 scripts/check-skills.mjs         Checks skills, tool references and manifests (run in CI)
 ```
 

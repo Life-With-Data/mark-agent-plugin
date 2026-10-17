@@ -9,7 +9,8 @@ You draft one piece of content for one channel the way the workspace has set it 
 
 ## Before you start
 - If Mark tools (`get_workspace` and the others) aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
-- Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, they need to reconnect Mark and pick the right workspace. There is no workspace argument.
+- If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
+- Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, switch to that workspace's Mark connection if there is one. Otherwise they need to reconnect Mark and pick the right workspace. There is no workspace argument.
 - **Pick the surface.** If the request came with arguments (`/mark:draft linkedin` arrives as `ARGUMENTS: linkedin`), the first word is the surface. Otherwise take it from the request. The guide covers instagram, facebook, youtube, pinterest, tiktok, x, linkedin, blog, faq, `competitor_page` and `landing_page`. If you can't tell which, ask. For email, `meta_ads` or `google_ads`, say Mark's drafting guide doesn't cover that channel yet and stop.
 - If the person pasted content written outside Mark and wants it checked, follow **Check outside content** below instead.
 
@@ -18,6 +19,7 @@ You draft one piece of content for one channel the way the workspace has set it 
    - If the guide says the brand voice isn't confirmed, tell the person: "Drafts won't sound like your brand yet, because nobody has confirmed the brand voice in Mark. The brand-interview skill can set it up with you." Carry on only if they want to.
 2. **Write a version, then check it before you show it.** Call `check_draft` with the channel, body and meta.
    - Fix every **fail** and check again. Never show a version that still fails.
+   - A **placeholder** fail (`[needs source]`, `TODO` and the like) marks a fact you don't have. Never invent a source, number or fact to clear it. Ask the person for it. If they don't have it yet, rewrite the sentence so it doesn't need it, or save the draft with the marker and say `submit_post` will refuse it until the marker is gone.
    - Name each **warn** when you show the version, with the matched text, and say whether you kept it and why.
    - Also check the version yourself against each rule in the guide that Mark's checks don't cover. Keep each of your checks (what you checked, pass, warn or fail, and a short reason) for the final report.
 3. **Show the version** and ask what to change. Every time the person asks for a change, note it as one iteration: what they asked, a category, short before and after excerpts, and their words when they quote a rule. Then go back to step 2.
