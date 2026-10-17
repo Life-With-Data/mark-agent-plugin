@@ -9,6 +9,7 @@ You explain where the business stands in AI-assistant answers and what to do abo
 
 ## Before you start
 - If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
+- If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
 - Call `get_workspace` and name the workspace.
 
 ## Setup

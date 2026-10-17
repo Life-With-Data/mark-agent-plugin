@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of 88 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 93 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.use-mark.com/mcp",
   "tools": [
     {
@@ -37,6 +37,30 @@
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "list_pinterest_boards",
+      "title": "List Pinterest Boards",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "set_pinterest_board",
+      "title": "Set Pinterest Board",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
       },
       "paid": false
     },
@@ -99,6 +123,18 @@
         "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "suggest_brand_rules",
+      "title": "Suggest Brand Rules",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
         "openWorldHint": false
       },
       "paid": false
@@ -379,6 +415,18 @@
       "paid": false
     },
     {
+      "name": "resolve_cms_conflict",
+      "title": "Resolve CMS Conflict",
+      "group": "Posts, review, and calendar",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
       "name": "approve_posts",
       "title": "Approve Posts",
       "group": "Posts, review, and calendar",
@@ -505,6 +553,18 @@
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "search_cms_media",
+      "title": "Search CMS Media",
+      "group": "Assets",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
       },
       "paid": false
     },

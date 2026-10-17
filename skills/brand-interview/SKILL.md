@@ -9,8 +9,9 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
 
 ## Before you start
 - If Mark tools (`get_workspace` and the others) aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
-- Call `get_workspace`. Name the workspace and ask the owner to confirm it's the brand they mean (for example "This is the **Verdella** workspace. Is that the brand we're setting up?"). If it's the wrong one, stop without writing anything: they need to reconnect Mark and pick the right workspace. There is no workspace argument.
-- Tools this skill uses: `get_workspace` and `get_brand_context` to read; `update_brand_profile`, `save_content_exclusion`, `add_source` and `save_claim` to write. Nothing else.
+- If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
+- Call `get_workspace`. Name the workspace and ask the owner to confirm it's the brand they mean (for example "This is the **Verdella** workspace. Is that the brand we're setting up?"). If it's the wrong one, stop without writing anything and switch to that workspace's Mark connection if there is one. Otherwise they need to reconnect Mark and pick the right workspace. There is no workspace argument.
+- Tools this skill uses: `get_workspace`, `get_brand_context` and `suggest_brand_rules` to read; `update_brand_profile`, `save_content_exclusion`, `add_source` and `save_claim` to write. Nothing else.
 
 ## Procedure
 1. **See what Mark has.** Call `get_brand_context`. Note per section: the voice section (positioning, differentiators, doctrine, voice tone, principles, do and dont lines, company facts), the overlay section (entities and evidence), the offer section (what you sell today, available now, planned, pricing, promises, claims to avoid), which sections are confirmed (brandReview), the active exclusions, claims and sources. If the voice section already has positioning or voice lines, work in **update mode** (below).
@@ -69,6 +70,11 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
 - List what Mark has per section, compare it with the local files, and propose only additions and conflicts. Don't re-ask what's already saved.
 - When you add a voice line, call `get_brand_context` first and send the full list: every saved line plus the new ones. Never send only the new lines.
 - Never re-create an exclusion or a claim that's already there.
+- **Rules from drafting feedback.** Call `suggest_brand_rules`. It lists what people asked to change while drafting that may apply everywhere, and saves nothing. If `state` is none, say nothing is waiting and move on. Otherwise go through the suggestions one at a time:
+  - Show the ask, the owner's own words (`userQuote`, or `before` and `after`), how many reports raised it (`count`), and whether it was marked unsure. Next to it, show any saved voice line or exclusion that already says the same thing; if one does, say so and skip it.
+  - Ask whether it should be a rule. Propose the wording, and for an exclusion (`kind` exclusion) the phrase, block or warn, and every channel or one. Merge two suggestions that say the same thing in different words into one question; after a yes, the one whose id you did not pass may come back next time.
+  - **Yes:** save an exclusion with `save_content_exclusion`, passing one of the suggestion's `feedbackIds` as `feedbackId`. Save a voice line with `update_brand_profile` (section voice, the full merged list), without confirm unless the owner has read the final section and says to confirm it. The checkpoint in step 6 still applies: one yes covers one save.
+  - **No:** save nothing and move on. The suggestion may come back next time; that's expected.
 
 ## When things go wrong
 - **A tool returns an error:** report the error text, fix the input if the error says how, and otherwise move on. Never work around it.
