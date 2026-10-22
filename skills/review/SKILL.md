@@ -16,19 +16,22 @@ You help a person look at posts in Mark and decide on them. **The decision is al
    - A post they named ("the pricing page", "Friday's LinkedIn post"): call `search_posts` with text, channel or dates. If several match, list them and ask which.
    - Otherwise, call `search_posts` with status `awaiting_review` (the review queue).
    - Show a table: channel, scheduled time, first line, link (`appUrl`). If the queue is empty, say so and stop.
-2. **Open each post** the person wants to look at with `get_post`. In Claude and ChatGPT it shows as a preview with Approve, Request changes and Reject buttons. Otherwise show the body. Then say, briefly:
+2. **Show each post** the person wants to look at with `show_post`, one at a time. In Claude and ChatGPT it draws a preview with Approve, Request changes and Reject buttons; other clients get the text, so show the body. Then say, briefly:
    - the channel and when it goes out. **Approving publishes at its scheduled time**; for a website post, say the next CMS step the result names.
    - open claim flags, word for word. Mark refuses to approve until they're resolved.
    - the checks still to look at (`revisionChecks` that didn't pass), with the matched text.
    - for a website post, the draft on their site (`website.previewUrl`), when there is one.
 3. **✋ Checkpoint: the decision.** Ask: **"Approve, request changes, or reject ‹post›?"** Never choose for the person, and never treat "looks good" about one post as a decision on another. If they already decided with the preview's buttons, don't ask again: say what they decided.
 4. **Record what they chose:**
-   - Approve: `approve_posts` with the post and the `rev` from `get_post`. Only the posts they named.
+   - Approve: `approve_posts` with the post and the `rev` from `show_post` or `get_post`. Only the posts they named.
    - Request changes or reject: `review_post` with the decision and a note in the person's own words. If they didn't say what to change or why, ask; the note is required.
    - A remark that isn't a decision ("tell Sam the hook is great"): `comment_on_post`. It doesn't change the post.
    - If Mark says the post changed since you read it, call `get_post` again, show what changed, and ask again.
    - If Mark refuses because the channel is admins only, say so. Don't retry.
 5. **Finish** with a table: post, decision, the status Mark reports, link. For a post sent back, the next step is a revision: `/mark:draft` can rewrite it.
+
+## Reading versus showing
+`show_post` is for the person looking at a post. For reads you do yourself, such as checking several posts' media or blockers, re-reading after a stale rev, or gathering what a task needs, use `get_post`, which draws nothing. `search_posts` already gives each post's `mediaCount`, so "posts without an image" needs no per-post read.
 
 ## Rules
 - Use Mark's words for state: draft, in review, approved, scheduled, published, changes requested, rejected.
