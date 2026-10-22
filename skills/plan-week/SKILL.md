@@ -9,7 +9,8 @@ You turn Mark's strategy (pillars, angles, personas), the open calendar slots, a
 
 ## Before you start
 - If Mark tools (`get_workspace` and the others) aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
-- Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, they need to reconnect Mark and pick the right workspace. There is no workspace argument.
+- If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
+- Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, switch to that workspace's Mark connection if there is one. Otherwise they need to reconnect Mark and pick the right workspace. There is no workspace argument.
 - Ask only for what you can't infer. Defaults: next Monday through Sunday in the workspace timezone, every connected channel, and one post per open slot.
 
 ## Setup
@@ -25,10 +26,10 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
    - `get_content_performance` for the last 30 days: top pillars and angles, and weak channels.
    - `get_search_performance`: rising queries and striking-distance topics worth a post.
    - `list_saved_keywords`: tagged topics the team already cares about.
-2. **Draft the plan.** For each open slot, give: day and time, channel, pillar, angle, a one-line hook, and why it's there (for example "angle X drove 2× engagement last month"). Balance the pillars across the week, don't repeat an angle on the same channel, and respect existing scheduled posts.
+2. **Draft the plan.** Call `get_drafting_guide` once for each channel in the plan (`surface` is the channel) and keep each guide and its `guideVersion` for step 4. Each guide says which formats suit that channel and what each is for. For each open slot, give: day and time, channel, pillar, angle, format (for example carousel, reel, thread or text post), a one-line hook, and why it's there (for example "angle X drove 2× engagement last month"). Balance the pillars across the week, mix formats instead of repeating one, keep promotional posts a small share, don't repeat an angle on the same channel, and respect existing scheduled posts.
 3. **✋ Checkpoint 1: plan approval.** Show the plan as a table and ask: **"Here's the plan for ‹week›. Shall I write these ‹N› drafts? Tell me what to change first."** Don't create anything until the user says yes.
 4. **Write each draft:**
-   - Call `get_drafting_guide` once for each channel you're writing for (`surface` is the channel) and follow it exactly. Keep each guide's `guideVersion`.
+   - Follow each channel's guide from step 2 exactly. If the user changed the plan or a brand rule since then, call `get_drafting_guide` again for that channel.
    - For media, `search_assets` then `get_asset` to pick existing images or video. Use `add_asset` only when the user provides a URL or file.
    - Call `save_post` (omit `postId`; set `channel`, `body`, media, angle, pillar, `scheduledAt` as ISO 8601, and `guideVersion` from that channel's guide). It creates a draft and never publishes. Keep the returned `postId` and `rev`.
 5. **✋ Checkpoint 2: before review.** Show every draft (channel, time, full text, media). Ask: **"Send these ‹N› drafts to review in Mark?"** Before asking, check each channel's approval mode with `list_channels`. **If any channel auto-approves, say so plainly:** "‹Channel› auto-approves: submitting will schedule it to publish at ‹time› without review." Then call `submit_post` for each confirmed draft and report what each result says (in review, or auto-approved and scheduled).
@@ -36,7 +37,7 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
 7. **Finish** with a summary: a table of drafts with status and links (`appUrl`), anything skipped and why, and the next step ("Review them in Mark → Review queue").
 
 ## Output format
-- The plan and draft lists are Markdown tables: Day, Time, Channel, Pillar/Angle, Hook/Text, Status.
+- The plan and draft lists are Markdown tables: Day, Time, Channel, Format, Pillar/Angle, Hook/Text, Status.
 - Use Mark's words for state: draft, in review, approved, scheduled, published, changes requested.
 
 ## When things go wrong
@@ -44,5 +45,5 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
 - **No performance data yet** (new workspace): plan from pillars and angles only, and say so.
 - **A channel is disconnected** (`list_channels` shows `connected: false`): skip it, call `get_connect_link` with that channel, give the user the link, then call `sync_connections` and `list_channels` to confirm after they say they're done. `list_connections` shows integrations, not individual social accounts.
 - **A post is locked or already published:** report the error text and move on. Never work around it.
-- **Cleanup a draft:** only after an explicit yes. Prefer `archive_post` if they might want it back. `delete_post` is permanent and only works on never-submitted drafts.
+- **Cleanup a draft:** only after an explicit yes. Prefer `archive_post` if they might want it back. `delete_post` is permanent; it works on any post that has not published and cancels a scheduled one.
 - **Don't invent** metrics, testimonials, prices or claims. If a draft needs a fact you don't have, leave a clear `[confirm: …]` placeholder and flag it at Checkpoint 2.

@@ -9,6 +9,7 @@ You find keywords worth writing for: ones the audience actually searches, that t
 
 ## Before you start
 - If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
+- If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
 - Call `get_workspace`. Ask for the seed topic, URL or competitor if the user didn't give one. Otherwise start from the brand's pillars.
 
 ## Setup
@@ -23,11 +24,11 @@ Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
    - `list_saved_keywords`: what's already saved, tagged, tracked or excluded. Don't re-propose excluded keywords.
    - `get_search_performance`: striking-distance queries (positions 5–20) are the cheapest wins.
 2. **✋ Checkpoint: paid research.** `research_keywords` needs an active market in the workspace, or pass `locationCode` / `languageCode` in the call. Plan the paid calls as one batch, for example "`research_keywords` for 2 seeds, `analyze_domain` for 1 competitor". Ask: **"This uses paid keyword data (‹N› lookups). Go ahead?"** On a yes, run them:
-   - `research_keywords` for each seed topic or URL: volume, difficulty, intent.
+   - `research_keywords` for each seed topic or URL: volume, difficulty, intent. The default source gives all three; `source: "google_ads"`, for a country the default does not cover, gives volume, CPC and competition, with no difficulty or intent. It returns close variants as one row, with the others in `closeVariants`: count that volume once, and keep the variants with the row.
    - `analyze_domain` for competitors the user names, with `view: "top_pages"` or `"page_keywords"`. Use `refresh: true` only if the user asks for fresh backlinks, since it costs more.
 
    Skip any refused call and work with what you have.
-3. **Shortlist** 5–15 keywords in a table: keyword, volume, difficulty, intent, current position (if any), and pillar. Order them by opportunity: fit first, then position 5–20, then volume ÷ difficulty. Leave paid audience fit until after save.
+3. **Shortlist** 5–15 keywords in a table: keyword, volume, difficulty, intent, current position (if any), and pillar. Order them by opportunity: fit first, then position 5–20, then volume ÷ difficulty (volume alone when there is no difficulty). Leave audience fit for the whole list until after save. To see who ranks for one keyword before saving it, call `check_keyword_audience` with `keyword`: that saves and tracks nothing.
 4. **✋ Checkpoint: save.** Saving a new keyword also tracks its rank and fetches who ranks for it on Google (a paid audience check, about $0.004 per keyword). Ask: **"Save these ‹N› keywords to Mark? I'll tag them ‹tag›. Mark tracks each one and checks who ranks for it (‹N› small paid lookups)."** On a yes, call `save_keywords` once with tags. Pass `track: false` only for a keyword the user doesn't want tracked; that also skips its audience check. Don't call `remove_keywords` in this skill.
 5. **Audience fit.** Read the saved keywords' top 10 with `list_saved_keywords`. If the sites ranking for one talk to a different crowd than the personas (DIY forums for a hire-a-pro business, for example), propose excluding it with a one-line reason. On a yes, call `save_keywords` for it with `excluded: true` and `excludedReason`. Excluding stops its rank tracking. Use `check_keyword_audience` only to re-check a keyword whose top 10 is missing or old.
 6. **Brief (optional).** For the best keyword, offer a content brief: search intent, the answer in two sentences, an outline (H2s), questions to cover, internal links, and a CTA. On a yes, `save_post` it as a **draft** (blog channel), not submitted. Blog drafts need `meta.title`, `meta.slug`, and `meta.seo` (with `title` and `description`):

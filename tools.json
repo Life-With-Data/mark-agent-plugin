@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of 88 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 104 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.use-mark.com/mcp",
   "tools": [
     {
@@ -7,6 +7,18 @@
       "title": "Get Workspace",
       "group": "Workspace and brand",
       "pr": 1,
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_plan_usage",
+      "title": "Get Plan Usage",
+      "group": "Workspace and brand",
       "annotations": {
         "readOnlyHint": true,
         "destructiveHint": false,
@@ -28,6 +40,18 @@
       "paid": false
     },
     {
+      "name": "set_business_aliases",
+      "title": "Set Business Aliases",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
       "name": "list_channels",
       "title": "List Channels",
       "group": "Workspace and brand",
@@ -37,6 +61,30 @@
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "list_pinterest_boards",
+      "title": "List Pinterest Boards",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "set_pinterest_board",
+      "title": "Set Pinterest Board",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
       },
       "paid": false
     },
@@ -99,6 +147,18 @@
         "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "suggest_brand_rules",
+      "title": "Suggest Brand Rules",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
         "openWorldHint": false
       },
       "paid": false
@@ -379,6 +439,18 @@
       "paid": false
     },
     {
+      "name": "resolve_cms_conflict",
+      "title": "Resolve CMS Conflict",
+      "group": "Posts, review, and calendar",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
       "name": "approve_posts",
       "title": "Approve Posts",
       "group": "Posts, review, and calendar",
@@ -478,7 +550,31 @@
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
+      "name": "record_post_published",
+      "title": "Record Post Published",
+      "group": "Posts, review, and calendar",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "unpublish_post",
+      "title": "Unpublish Post",
+      "group": "Posts, review, and calendar",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
       },
       "paid": false
     },
@@ -505,6 +601,18 @@
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "search_cms_media",
+      "title": "Search CMS Media",
+      "group": "Assets",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
       },
       "paid": false
     },
@@ -561,6 +669,18 @@
       "paid": false
     },
     {
+      "name": "get_weekly_brief",
+      "title": "Get Weekly Brief",
+      "group": "Performance",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
       "name": "get_content_performance",
       "title": "Get Content Performance",
       "group": "Performance",
@@ -601,6 +721,18 @@
     {
       "name": "get_visitor_locations",
       "title": "Get Visitor Locations",
+      "group": "Performance",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "get_performance_overview",
+      "title": "Get Performance Overview",
       "group": "Performance",
       "annotations": {
         "readOnlyHint": true,
@@ -779,6 +911,18 @@
       "paid": false
     },
     {
+      "name": "remove_competitor_lookup",
+      "title": "Remove Competitor Lookup",
+      "group": "Keywords and competitors",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
       "name": "set_competitor_aliases",
       "title": "Set Competitor Aliases",
       "group": "Keywords and competitors",
@@ -797,6 +941,18 @@
       "pr": 4,
       "annotations": {
         "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "draft_competitor_page",
+      "title": "Draft Competitor Page",
+      "group": "Keywords and competitors",
+      "annotations": {
+        "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
@@ -836,6 +992,18 @@
       "pr": 1,
       "annotations": {
         "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "dismiss_ai_crawler_404",
+      "title": "Dismiss AI Crawler 404",
+      "group": "Websites and site health",
+      "annotations": {
+        "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
@@ -947,6 +1115,18 @@
       "paid": true
     },
     {
+      "name": "estimate_ai_volume",
+      "title": "Estimate AI Search Volume",
+      "group": "AI visibility",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
       "name": "run_answer_engine_check",
       "title": "Run AI Answer Check",
       "group": "AI visibility",
@@ -986,6 +1166,18 @@
     {
       "name": "get_buyer_question_answers",
       "title": "Get Buyer Question Answers",
+      "group": "AI visibility",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "compare_buyer_question_answers",
+      "title": "Compare Buyer Question Answers",
       "group": "AI visibility",
       "annotations": {
         "readOnlyHint": true,
