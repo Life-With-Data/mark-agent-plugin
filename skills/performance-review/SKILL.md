@@ -9,6 +9,7 @@ You give the team an honest, specific read on what's working, backed by Mark's n
 
 ## Before you start
 - If Mark tools aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
+- If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
 - Call `get_workspace` and name the workspace you're reporting on.
 - Period: default to the last 30 days against the 30 days before. Use the user's period if they give one ("last week", "Q3").
 
@@ -17,7 +18,8 @@ You give the team an honest, specific read on what's working, backed by Mark's n
    - `get_content_performance` for the period, with comparison: reach, engagement and clicks by channel, post, pillar and angle, plus progress against KPI targets.
    - `get_search_performance`: clicks, impressions, position, top movers, striking-distance queries (positions 5–20) and anomalies.
    - `get_rankings`: tracked keyword winners and losers.
-   - `get_ai_visibility`: buyer-question coverage, AI search volume, AI-assistant referral traffic.
+   - `get_ai_visibility`: buyer-question coverage, AI search volume, AI assistant bot fetches (not referrals).
+   - `get_visitor_locations` with `source: "ai_referral"`: visitors who clicked through from an AI assistant's answer, by country. A floor, not the full number.
    - `get_brand_context`: pillars, angles and KPI targets, so you can speak in the team's terms.
    - `search_posts` for published posts in the period, to name the actual top and bottom posts.
 2. **Write the review:**
