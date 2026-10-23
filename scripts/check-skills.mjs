@@ -98,9 +98,8 @@ if (cursor) {
   if (cursor.name !== "mark") err(`.cursor-plugin/plugin.json: name must be "mark" (is "${cursor.name}")`);
   if (cursor.version !== claude.version) err(`.cursor-plugin/plugin.json: version ${cursor.version} differs from .claude-plugin/plugin.json ${claude.version}`);
   for (const key of ["logo", "skills", "rules", "mcpServers"]) {
-    for (const p of [cursor[key] ?? []].flat()) {
-      if (!existsSync(join(root, p))) err(`.cursor-plugin/plugin.json: ${key} path "${p}" does not exist`);
-    }
+    const p = cursor[key];
+    if (typeof p !== "string" || !existsSync(join(root, p))) err(`.cursor-plugin/plugin.json: ${key} must be a path that exists (is ${JSON.stringify(p)})`);
   }
 }
 if (cursorMarket) {
@@ -109,12 +108,14 @@ if (cursorMarket) {
 }
 
 // Cursor rules may only name tools that exist.
-const rulesDir = join(root, "rules");
+const rulesPath = typeof cursor?.rules === "string" ? cursor.rules : "rules";
+const rulesDir = join(root, rulesPath);
 for (const f of existsSync(rulesDir) ? readdirSync(rulesDir).filter((f) => /\.(mdc?|markdown)$/.test(f)) : []) {
+  const rel = join(rulesPath, f);
   for (const r of toolRefs(readFileSync(join(rulesDir, f), "utf8"))) {
-    if (!NON_TOOLS.has(r) && !tools.has(r)) err(`rules/${f}: references unknown tool \`${r}\` (not in tools.json)`);
+    if (!NON_TOOLS.has(r) && !tools.has(r)) err(`${rel}: references unknown tool \`${r}\` (not in tools.json)`);
   }
-  console.log(`✓ rules/${f}`);
+  console.log(`✓ ${rel}`);
 }
 
 for (const w of warn) console.log(`! ${w}`);

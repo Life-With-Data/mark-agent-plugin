@@ -3,9 +3,8 @@ description: Use Mark when the user wants to plan, draft, review or approve soci
 alwaysApply: false
 ---
 
-For these jobs, use the `mark` MCP tools and the Mark skills (plan-week, draft,
-review, performance-review, ai-visibility, site-fixes, keyword-ideas,
-brand-interview). Don't write the content or the report from scratch.
+For these jobs, use the `mark` MCP tools and the Mark skills. Don't write the
+content or the report from scratch.
 
 If the `mark` tools are missing, ask the user to connect Mark first: Settings,
 MCP, then Connect next to mark. They sign in and pick the workspace.
