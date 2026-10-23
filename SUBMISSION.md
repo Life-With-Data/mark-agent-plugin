@@ -41,9 +41,12 @@ Same portal, separate submission. Docs: [review criteria](https://claude.com/doc
 - [ ] Submit. **Anthony's OK required.**
 
 ## 3. Cursor Marketplace
-- [ ] Confirm Cursor's current plugin submission path, and whether it reads `.claude-plugin/` or the Agent Plugins manifests (`plugin.json` and `mcp.json` at the root; both are present)
-- [ ] Test the install from GitHub in Cursor (MCP connect, skills visible)
-- [ ] Listing assets: icon, description, screenshots
+Portal: cursor.com/marketplace/publish (open-source repo, manual review; updates are reviewed too). Docs: [plugins](https://cursor.com/docs/plugins), [plugin reference](https://cursor.com/docs/reference/plugins).
+- [x] **Which manifest Cursor reads.** `.cursor-plugin/plugin.json`. Cursor looks for `.cursor-plugin/plugin.json`, then `.claude-plugin/plugin.json`, then `plugin.json`, and uses the first it finds (MRK-1060). It names `skills: "./skills/"`, `rules: "./rules/"` and `mcpServers: "./.mcp.json"`, so Cursor and Claude Code share one MCP config. `.cursor-plugin/marketplace.json` (`mark-gtm`) lists the one plugin for team marketplace import.
+- [x] Kebab-case name: **`mark`**. Description, author, homepage, repository, license and version match `.claude-plugin/plugin.json` (`check-skills.mjs` enforces version and name, and that every path in the Cursor manifest exists).
+- [x] **Local install tested (2026-10-23, MRK-1060).** With the repo at `~/.cursor/plugins/local/mark`, Cursor loaded the plugin, its 8 skills and the `mark.mdc` rule, and started the `mark` MCP server from `.mcp.json`, which asked for OAuth. Still to do by hand: Connect, the consent screen, the tool list and one read-only call (see MRK-1060).
+- [x] Listing assets: logo `assets/logo.svg` (Mark's square icon from the design system brand kit), the description from the manifest, and the README. Cursor doesn't require screenshots. If the form asks, upload them there; CI rejects binary files in this repo.
+- [ ] Reviewer test account (shared prerequisite above, MRK-1004).
 - [ ] Submit. **Anthony's OK required.**
 
 ## 4. Other directories (later)
@@ -54,6 +57,6 @@ Same portal, separate submission. Docs: [review criteria](https://claude.com/doc
 - [ ] **Skills directories** (`npx skills` / skills.sh): works from GitHub without a listing.
 
 ## Release process
-1. Bump `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` (plugin entry and metadata) and `plugin.json`.
+1. Bump `version` in all five manifests: `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json` (plugin entry and metadata), `plugin.json`, `.cursor-plugin/plugin.json` and `.cursor-plugin/marketplace.json` (plugin entry). Mark's sync job does this after each production deploy.
 2. Update `tools.json` if the server's tools changed. `node scripts/check-skills.mjs` must pass.
 3. Tag `vX.Y.Z` and write short release notes.

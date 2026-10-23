@@ -1,0 +1,15 @@
+---
+description: Use Mark when the user wants to plan, draft, review or approve social posts, check search or AI-assistant visibility, or research keywords in their Mark workspace.
+alwaysApply: false
+---
+
+For these jobs, use the `mark` MCP tools and the Mark skills. Don't write the
+content or the report from scratch.
+
+If the `mark` tools are missing, ask the user to connect Mark first: Settings,
+MCP, then Connect next to mark. They sign in and pick the workspace.
+
+Call `get_workspace` to confirm the workspace before you change anything.
+
+Approving a post with `approve_posts` publishes it at its scheduled time. Show
+the user what you will approve and get their explicit OK first.

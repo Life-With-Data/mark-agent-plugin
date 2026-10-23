@@ -1,0 +1,15 @@
+{
+  "name": "mark-gtm",
+  "owner": {
+    "name": "Life With Data",
+    "url": "https://www.use-mark.com"
+  },
+  "plugins": [
+    {
+      "name": "mark",
+      "source": "./",
+      "description": "Plan, review and approve social posts, check search and AI-assistant visibility, and research keywords in your Mark workspace. Connects to Mark's MCP server and adds marketing skills.",
+      "version": "0.2.5"
+    }
+  ]
+}

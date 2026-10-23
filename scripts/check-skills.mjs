@@ -3,8 +3,9 @@
 //  - frontmatter: name == folder, [a-z0-9-], ≤64 chars; description 1–1024 chars, no angle brackets
 //  - body under 500 lines
 //  - every `snake_case` tool reference exists in tools.json (enum values allowlisted below)
-// Also checks the JSON manifests parse and agree on name/version/URL. No dependencies.
-import { readFileSync, readdirSync, statSync } from "node:fs";
+// Also checks the JSON manifests parse and agree on name/version/URL, that the
+// Cursor manifest's paths exist, and that Cursor rules name only real tools. No dependencies.
+import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const root = new URL("..", import.meta.url).pathname;
@@ -18,6 +19,7 @@ const tools = new Map(lock.tools.map((t) => [t.name, t]));
 const NON_TOOLS = new Set(["buyer_question", "kpi_target", "top_pages", "page_keywords", "awaiting_review", "changes_requested",
   // Channel values with an underscore.
   "competitor_page", "landing_page", "meta_ads", "google_ads"]);
+const toolRefs = (text) => new Set([...text.matchAll(/`([a-z][a-z0-9]*(?:_[a-z0-9]+)+)`/g)].map((x) => x[1]));
 
 const skillsDir = join(root, "skills");
 const skills = readdirSync(skillsDir).filter((d) => statSync(join(skillsDir, d)).isDirectory());
@@ -58,7 +60,7 @@ for (const dir of skills) {
   if (!/connect mark first/i.test(body)) err(`${dir}: must tell the user how to connect Mark when tools are missing`);
   if (!/✋ Checkpoint/.test(body)) warn.push(`${dir}: no explicit ✋ Checkpoint`);
 
-  const refs = new Set([...body.matchAll(/`([a-z][a-z0-9]*(?:_[a-z0-9]+)+)`/g)].map((x) => x[1]));
+  const refs = toolRefs(body);
   for (const r of refs) {
     if (NON_TOOLS.has(r)) continue;
     const t = tools.get(r);
@@ -81,6 +83,40 @@ if (market.name !== "mark-gtm") err("marketplace name must be \"mark-gtm\"");
 if (claude.version !== ap.version || market.plugins[0].version !== claude.version) err("versions differ across plugin.json / marketplace.json");
 const url = lock.server;
 if (mcpClaude.mcpServers.mark.url !== url || mcpAp.mcpServers.mark.url !== url) err(`MCP URL must be ${url} in .mcp.json and mcp.json`);
+
+// Cursor manifests agree with the Claude one, and every path they name exists.
+const tryJ = (p) => {
+  try {
+    return j(p);
+  } catch (e) {
+    err(`${p}: ${e.code === "ENOENT" ? "missing" : `does not parse (${e.message})`}`);
+  }
+};
+const cursor = tryJ(".cursor-plugin/plugin.json");
+const cursorMarket = tryJ(".cursor-plugin/marketplace.json");
+if (cursor) {
+  if (cursor.name !== "mark") err(`.cursor-plugin/plugin.json: name must be "mark" (is "${cursor.name}")`);
+  if (cursor.version !== claude.version) err(`.cursor-plugin/plugin.json: version ${cursor.version} differs from .claude-plugin/plugin.json ${claude.version}`);
+  for (const key of ["logo", "skills", "rules", "mcpServers"]) {
+    const p = cursor[key];
+    if (typeof p !== "string" || !existsSync(join(root, p))) err(`.cursor-plugin/plugin.json: ${key} must be a path that exists (is ${JSON.stringify(p)})`);
+  }
+}
+if (cursorMarket) {
+  if (cursorMarket.name !== "mark-gtm") err(`.cursor-plugin/marketplace.json: name must be "mark-gtm" (is "${cursorMarket.name}")`);
+  if (cursorMarket.plugins?.[0]?.version !== claude.version) err(`.cursor-plugin/marketplace.json: plugin version ${cursorMarket.plugins?.[0]?.version} differs from .claude-plugin/plugin.json ${claude.version}`);
+}
+
+// Cursor rules may only name tools that exist.
+const rulesPath = typeof cursor?.rules === "string" ? cursor.rules : "rules";
+const rulesDir = join(root, rulesPath);
+for (const f of existsSync(rulesDir) ? readdirSync(rulesDir).filter((f) => /\.(mdc?|markdown)$/.test(f)) : []) {
+  const rel = join(rulesPath, f);
+  for (const r of toolRefs(readFileSync(join(rulesDir, f), "utf8"))) {
+    if (!NON_TOOLS.has(r) && !tools.has(r)) err(`${rel}: references unknown tool \`${r}\` (not in tools.json)`);
+  }
+  console.log(`✓ ${rel}`);
+}
 
 for (const w of warn) console.log(`! ${w}`);
 for (const e of errors) console.error(`✗ ${e}`);
