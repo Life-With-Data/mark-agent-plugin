@@ -4,7 +4,9 @@
 //  - body under 500 lines
 //  - every `snake_case` tool reference exists in tools.json (enum values allowlisted below)
 // Also checks the JSON manifests parse and agree on name/version/URL, that the
-// Cursor manifest's paths exist, and that Cursor rules name only real tools. No dependencies.
+// Cursor manifest's paths exist, that Cursor rules name only real tools, that the OpenAI
+// listing's image paths exist and its review cases name real tools, and that neither Agent
+// Plugins manifest carries secrets or server headers. No dependencies.
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";
 
@@ -117,6 +119,41 @@ for (const f of existsSync(rulesDir) ? readdirSync(rulesDir).filter((f) => /\.(m
   }
   console.log(`✓ ${rel}`);
 }
+
+// OpenAI listing (extensions.com.openai in plugin.json): image paths exist, review cases name real tools.
+const openai = ap.extensions?.["com.openai"];
+if (openai) {
+  for (const key of ["logo", "logoDark", "composerIcon", "composerIconDark"]) {
+    const p = openai.interface?.[key];
+    if (p !== undefined && (typeof p !== "string" || !existsSync(join(root, p)))) err(`plugin.json: extensions.com.openai.interface.${key} must be a path that exists (is ${JSON.stringify(p)})`);
+  }
+  for (const kind of ["positive", "negative"]) {
+    for (const [i, c] of (openai.review?.test_cases?.[kind] ?? []).entries()) {
+      // OpenAI's format: one comma-separated string, required on positive cases.
+      if (typeof c.tools_triggered !== "string") {
+        if (kind === "positive" || c.tools_triggered !== undefined) err(`plugin.json: review.test_cases.${kind}[${i}].tools_triggered must be a comma-separated string`);
+        continue;
+      }
+      for (const name of c.tools_triggered.split(",").map((s) => s.trim()).filter(Boolean)) {
+        if (!tools.has(name)) err(`plugin.json: review.test_cases.${kind}[${i}] triggers unknown tool \`${name}\` (not in tools.json)`);
+      }
+    }
+  }
+  console.log("✓ plugin.json extensions.com.openai");
+}
+
+// OpenAI rejects packages carrying secrets, reviewer data or server headers.
+const BANNED = new Set(["clientSecret", "test_credentials", "reviewer_instructions"]);
+const scan = (file, v, path = "") => {
+  if (!v || typeof v !== "object") return;
+  for (const [k, x] of Object.entries(v)) {
+    if (BANNED.has(k)) err(`${file}: ${path}${k} must not be in the package`);
+    if (k === "headers" && x && Object.keys(x).length) err(`${file}: ${path}headers must be empty or absent`);
+    scan(file, x, `${path}${k}.`);
+  }
+};
+scan("plugin.json", ap);
+scan("mcp.json", mcpAp);
 
 for (const w of warn) console.log(`! ${w}`);
 for (const e of errors) console.error(`✗ ${e}`);

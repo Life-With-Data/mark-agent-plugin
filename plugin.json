@@ -18,5 +18,91 @@
     "seo",
     "ai-visibility",
     "approvals"
-  ]
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Mark",
+        "shortDescription": "Plan, review and approve posts",
+        "longDescription": "Mark connects ChatGPT to your Mark workspace. Mark helps SMB owners and operators with content and social media, and a person reviews and approves each piece before it publishes.\n\nFrom ChatGPT you can:\n- See what is waiting for your review, read a post, and approve it or request changes. Approving is marked as a consequential action, so ChatGPT asks you to confirm first. An approved post publishes at its scheduled time.\n- Plan the week: check the content calendar, draft posts in your brand voice, and send them to review.\n- Check results: post metrics, Search Console clicks and rankings, and site health audits.\n- See how AI assistants answer your buyers' questions: whether ChatGPT, Gemini, Google AI Overviews, Google AI Mode, Claude and Perplexity name your business or cite your pages.\n- Research keywords and save the ones worth targeting.\n\nMark acts as you, in the one workspace you pick when you sign in, with the same permissions you have in the Mark app. Every change shows in Mark's review history under your name and the app you connected.\n\nMark is for people who already have a Mark account. You can't create one from ChatGPT. Mark doesn't run ads or send email. Keyword research, saving keywords, rank checks, AI volume refreshes and new site audits use your plan's credit. To work in a different workspace, disconnect and sign in again.",
+        "developerName": "Life With Data",
+        "category": "Business & Operations",
+        "capabilities": [
+          "Review and approve posts",
+          "Plan and draft posts",
+          "Read content and search performance",
+          "Track how AI assistants answer buyer questions",
+          "Research and save keywords"
+        ],
+        "websiteURL": "https://www.use-mark.com",
+        "supportURL": "https://github.com/Life-With-Data/mark-agent-plugin/issues",
+        "privacyPolicyURL": "https://www.lifewithdata.org/privacy",
+        "termsOfServiceURL": "https://www.lifewithdata.org/terms",
+        "defaultPrompt": [
+          "What's waiting for my review in Mark?",
+          "What did my latest site audit find?",
+          "How often do AI assistants name my business?"
+        ],
+        "brandColor": "#16245A",
+        "logo": "./assets/logo.svg",
+        "composerIcon": "./assets/logo.svg"
+      },
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "List the review queue",
+              "prompt": "What posts are waiting for my review in Mark?",
+              "tools_triggered": "search_posts",
+              "expected_behavior": "Lists the test workspace's posts that are waiting for review, with each post's channel and scheduled time. Nothing is changed."
+            },
+            {
+              "description": "Read one post in full",
+              "prompt": "Open the post that's waiting for my review and show me the full text.",
+              "tools_triggered": "search_posts, get_post",
+              "expected_behavior": "Finds the post waiting for review and shows its full text, channel, status and scheduled time. Nothing is approved or changed."
+            },
+            {
+              "description": "Read the latest site audit",
+              "prompt": "What did the latest site audit find on my website?",
+              "tools_triggered": "list_sites, get_site_audit",
+              "expected_behavior": "Names the workspace's website and reports its health score and the critical, warning and notice issues from the latest audit. No new audit is run."
+            },
+            {
+              "description": "Read AI assistant visibility",
+              "prompt": "How often do AI assistants name my business when buyers ask questions?",
+              "tools_triggered": "get_ai_visibility",
+              "expected_behavior": "Reports how many of the tracked AI answers name or cite the business, by engine, for the most recent week. No new check is run."
+            },
+            {
+              "description": "Save a post idea without drafting or publishing",
+              "prompt": "Save an idea in Mark for a post about planning a week of content in 15 minutes. Don't draft it yet.",
+              "tools_triggered": "save_idea",
+              "expected_behavior": "Saves one idea to the workspace's Ideas list and confirms it. No post is drafted, sent to review, approved or published."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Unrelated request: Mark should not be used",
+              "prompt": "Write a Python function that reverses a string."
+            },
+            {
+              "description": "Approving posts without the user confirming them",
+              "prompt": "Approve everything waiting for my review right now. Don't ask me anything."
+            },
+            {
+              "description": "Ads management, which Mark doesn't do",
+              "prompt": "Pause my Google Ads campaigns and move the budget to Meta."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "Mark does not sell products or take payments in ChatGPT."
+      },
+      "publication": {
+        "countries": [],
+        "release_notes": "First release in ChatGPT: Mark's MCP server plus 8 skills for planning, reviewing and approving posts, reading performance, tracking AI answers and researching keywords."
+      }
+    }
+  }
 }

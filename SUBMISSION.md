@@ -49,8 +49,28 @@ Portal: cursor.com/marketplace/publish (open-source repo, manual review; updates
 - [ ] Reviewer test account (shared prerequisite above, MRK-1004).
 - [ ] Submit. **Anthony's OK required.**
 
-## 4. Other directories (later)
-- [ ] **OpenAI / ChatGPT apps directory:** needs the Apps SDK review; custom connectors in Developer mode work without a listing.
+## 4. OpenAI plugin directory (ChatGPT and Codex)
+Portal: OpenAI Platform, Plugins (ZIP upload, automated checks, domain verification, review, then the owner publishes). Docs: [submission](https://developers.openai.com/plugins/deploy/submission), [submission errors](https://developers.openai.com/plugins/deploy/submission-errors), [auth](https://developers.openai.com/plugins/build/auth), [guidelines](https://developers.openai.com/plugins/plugin-guidelines). Tracked in MRK-1061.
+
+**What the package is.** The root Agent Plugins `plugin.json` with OpenAI's listing, review and publication fields under `extensions.com.openai`, root `mcp.json` (the same `https://app.use-mark.com/mcp`), `skills/` and `assets/logo.svg`. With `extensions.com.openai` present, OpenAI ignores `.codex-plugin/`, and the portal generates the Codex files, so one listing covers ChatGPT and Codex. There is no `.codex-plugin/`, no `apps`, no hooks, no `onboardingSkill`, no screenshots (Mark has no custom UI) and no `auth` block in `mcp.json`: ChatGPT finds Clerk through the server's protected-resource metadata and registers itself through DCR or CIMD. The sync job's root `plugin.json` bump covers this listing too.
+
+**Build the ZIP** from the repo root. It holds only `plugin.json`, `mcp.json`, `skills/` and `assets/`, with no hidden files:
+```bash
+node scripts/check-skills.mjs && v=$(node -p 'require("./plugin.json").version') && rm -f "mark-$v.zip" && zip -qrX "mark-$v.zip" plugin.json mcp.json skills assets -x '.*' '*/.*' && unzip -l "mark-$v.zip"
+```
+OpenAI needs a new semver on every upload. Build from a version the sync job has bumped, not a reused one. `*.zip` is gitignored.
+
+- [x] Listing fields in `extensions.com.openai.interface`: name, short and long description, developer, category, capabilities, the four HTTPS listing URLs, 3 default prompts, brand color (Navy `#16245A`), `logo` and `composerIcon` (`./assets/logo.svg`).
+- [x] Review cases: 5 positive, 3 negative, every `tools_triggered` name in `tools.json` (`check-skills.mjs` enforces this, and that the image paths exist). Positive cases read or save an idea only, so an `org:member` reviewer can run them without publishing.
+- [x] `publication.countries: []` (no country restriction) and `release_notes`.
+- [x] No `clientSecret`, `test_credentials`, `reviewer_instructions` or non-empty `headers` in either manifest (`check-skills.mjs` enforces this). Reviewer credentials go only in the portal's **Review details**.
+- [ ] ChatGPT custom MCP server connect test (Plugins → + → Add custom MCP server → OAuth): Clerk sign-in, workspace picker, tool list, one read-only call, still connected after the access token expires, and with a Business, Enterprise or Edu account a confirmed approval that shows "via" ChatGPT's client name. Evidence goes on MRK-1061.
+- [ ] Demo recording URL (`review.demo_recording_url`): required for review. Record the 5 positive cases in the reviewer workspace, then add the URL here or in the portal.
+- [ ] Reviewer account: MRK-1004's production user in the Astroship workspace, as `org:member`, with no MFA, email codes or magic links. Submission waits until MRK-1004 is Done.
+- [ ] Domain verification: `https://app.use-mark.com/.well-known/openai-apps-challenge` must return the portal's token as plain text. That route lands in the mark repo only once Anthony has the token.
+- [ ] Upload, automated checks with no blocking findings, submit. **Anthony's OK required** for each step, and again before publishing.
+
+## 5. Other directories (later)
 - [ ] **xAI / Grok connectors:** custom connectors work today; check for a public directory.
 - [ ] **Muse platform** (muse.ai/platform, "Existing MCP", OAuth with PKCE): Muse's MCP support is not documented officially. Verify before submitting.
 - [ ] **Agent Plugins registries** (VS Code/Copilot, Codex, Kiro, Hermes, Grok Bot): the root `plugin.json` and `mcp.json` are schema-valid (CI checks this). Submit where a registry exists.
