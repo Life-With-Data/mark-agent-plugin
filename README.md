@@ -48,7 +48,7 @@ Then run `/mcp`, select **mark**, and choose **Authenticate**. MCP only: `claude
 Go to **Settings → Connectors → Add custom connector**, name it `Mark`, paste the URL, choose **Connect**, sign in, and pick your workspace. On Team and Enterprise plans an owner adds it under organization connectors. On plans with plugins, you can add this repo as a plugin marketplace instead to get the skills too.
 
 ### ChatGPT
-Until Mark is listed in ChatGPT's plugin directory, add it as a custom MCP server. Go to **Plugins**, choose **+**, then **Add custom MCP server**. Paste the URL, choose **OAuth**, sign in to Mark, pick your workspace, and choose **Create as a plugin**. Full tool access (posting, approving and other writes) needs a ChatGPT Business, Enterprise or Edu workspace on the web. On Business, only admins and owners can add a custom MCP server.
+Until Mark is listed in ChatGPT's plugin directory, add it as a custom MCP server. Go to **Plugins**, choose **+**, then **Add custom MCP server**. Paste the URL, choose **OAuth**, sign in to Mark, pick your workspace, and choose **Create as a plugin**. Full tool access (drafting, approving and other changes) needs a ChatGPT Business, Enterprise or Edu workspace on the web. On Business, only admins and owners can add a custom MCP server.
 
 ### Grok (grok.com)
 Go to **grok.com/connectors → New Connector → Custom**, paste the URL, and sign in. On Business and Enterprise, an admin provisions the connector in the xAI console first.

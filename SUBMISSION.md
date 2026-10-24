@@ -56,7 +56,7 @@ Portal: OpenAI Platform, Plugins (ZIP upload, automated checks, domain verificat
 
 **Build the ZIP** from the repo root. It holds only `plugin.json`, `mcp.json`, `skills/` and `assets/`, with no hidden files:
 ```bash
-v=$(node -p 'require("./plugin.json").version') && rm -f "mark-$v.zip" && zip -qrX "mark-$v.zip" plugin.json mcp.json skills assets -x '.*' '*/.*' && unzip -l "mark-$v.zip"
+node scripts/check-skills.mjs && v=$(node -p 'require("./plugin.json").version') && rm -f "mark-$v.zip" && zip -qrX "mark-$v.zip" plugin.json mcp.json skills assets -x '.*' '*/.*' && unzip -l "mark-$v.zip"
 ```
 OpenAI needs a new semver on every upload. Build from a version the sync job has bumped, not a reused one. `*.zip` is gitignored.
 

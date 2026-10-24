@@ -129,7 +129,12 @@ if (openai) {
   }
   for (const kind of ["positive", "negative"]) {
     for (const [i, c] of (openai.review?.test_cases?.[kind] ?? []).entries()) {
-      for (const name of (c.tools_triggered ?? "").split(",").map((s) => s.trim()).filter(Boolean)) {
+      // OpenAI's format: one comma-separated string, required on positive cases.
+      if (typeof c.tools_triggered !== "string") {
+        if (kind === "positive" || c.tools_triggered !== undefined) err(`plugin.json: review.test_cases.${kind}[${i}].tools_triggered must be a comma-separated string`);
+        continue;
+      }
+      for (const name of c.tools_triggered.split(",").map((s) => s.trim()).filter(Boolean)) {
         if (!tools.has(name)) err(`plugin.json: review.test_cases.${kind}[${i}] triggers unknown tool \`${name}\` (not in tools.json)`);
       }
     }
