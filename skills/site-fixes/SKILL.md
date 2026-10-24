@@ -13,10 +13,9 @@ You produce a short, prioritized fix list that a developer or site owner can act
 - Call `get_workspace`, then `list_sites`. Use the primary site unless the user names another.
 
 ## Setup
-Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
-- Missing market: ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
-- Missing site: ask for the hostname, then `save_site`.
-- Missing LinkedIn/social or Google: `get_connect_link`, give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
+Call `get_setup_status` and read `rows` for the steps this skill needs: "website", "web_analytics". A row in state "todo" or "skipped" is missing. `ready` and `gaps` leave out skipped rows, so don't rely on them. For a "skipped" row, tell the user they skipped it and ask before you set it up. For each missing row:
+- "website": ask for the hostname, then `save_site`.
+- "web_analytics": this skill needs Search Console, so check the row's detail. If it names Search Console, `get_connect_link` with provider `google`, give the user the link, then `sync_connections` after they say they're done. The rest of that row doesn't block this skill.
 
 ## Procedure
 1. **Read what's there** (read-only):
