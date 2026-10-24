@@ -3,7 +3,7 @@
 Connect Claude, ChatGPT, Grok, Cursor, VS Code, Codex, Windsurf and other AI agents to your [Mark](https://www.use-mark.com) workspace. From your agent you can plan and draft posts, send them to review, approve what's waiting on you, check how content and search are performing, see how AI assistants find you, and research keywords. The agent acts as you, in the one workspace you pick when you sign in.
 
 This repo is:
-- **the `mark` plugin:** Mark's MCP server plus its skills, for Claude Code, Claude, Cursor, VS Code, Codex, Grok Bot and other clients that read Claude, Cursor or [Agent Plugins](https://agent-plugins.org) manifests;
+- **the `mark` plugin:** Mark's MCP server plus its skills, for Claude Code, Claude, ChatGPT, Cursor, VS Code, Codex, Grok Bot and other clients that read Claude, Cursor or [Agent Plugins](https://agent-plugins.org) manifests;
 - **the `mark-gtm` marketplace** that lists it.
 
 The Mark MCP server (`https://app.use-mark.com/mcp`) is live. **105 tools.** Sign in, pick a workspace, click Allow.
@@ -48,7 +48,7 @@ Then run `/mcp`, select **mark**, and choose **Authenticate**. MCP only: `claude
 Go to **Settings → Connectors → Add custom connector**, name it `Mark`, paste the URL, choose **Connect**, sign in, and pick your workspace. On Team and Enterprise plans an owner adds it under organization connectors. On plans with plugins, you can add this repo as a plugin marketplace instead to get the skills too.
 
 ### ChatGPT
-Go to **Settings → Apps & Connectors → Advanced**, turn on **Developer mode**, then choose **Create**. Enter the name `Mark` and the URL, and set authentication to **OAuth**. Sign in and pick your workspace. Add Mark to a chat from the **+** menu. On Business and Enterprise, an admin must allow custom connectors.
+Until Mark is listed in ChatGPT's plugin directory, add it as a custom MCP server. Go to **Plugins**, choose **+**, then **Add custom MCP server**. Paste the URL, choose **OAuth**, sign in to Mark, pick your workspace, and choose **Create as a plugin**. Full tool access (posting, approving and other writes) needs a ChatGPT Business, Enterprise or Edu workspace on the web. On Business, only admins and owners can add a custom MCP server.
 
 ### Grok (grok.com)
 Go to **grok.com/connectors → New Connector → Custom**, paste the URL, and sign in. On Business and Enterprise, an admin provisions the connector in the xAI console first.
@@ -121,7 +121,8 @@ The skills need the Mark MCP connection above to do anything.
 .cursor-plugin/plugin.json       Cursor plugin manifest (name: mark)
 .cursor-plugin/marketplace.json  Cursor marketplace (name: mark-gtm)
 .mcp.json                        MCP config for Claude and Cursor (remote HTTP)
-plugin.json, mcp.json            Agent Plugins 1.0 manifests (same plugin, other clients)
+plugin.json, mcp.json            Agent Plugins 1.0 manifests (same plugin, other clients);
+                                 plugin.json's extensions.com.openai is the ChatGPT/Codex listing
 skills/<name>/SKILL.md           The skills (Agent Skills format), synced from Mark
 rules/mark.mdc                   Cursor rule: when to use Mark (agent-requested)
 assets/logo.svg                  Plugin logo
@@ -137,7 +138,7 @@ npx @anthropic-ai/claude-code plugin validate --strict .claude-plugin/marketplac
 npx @anthropic-ai/claude-code plugin validate --strict .claude-plugin/plugin.json
 npx @anthropic-ai/claude-code plugin validate --strict skills
 ```
-Mark's CI opens a pull request here after each production deploy that syncs `skills/` and `tools.json` and bumps `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `plugin.json`, `.cursor-plugin/plugin.json` and `.cursor-plugin/marketplace.json` together. CI fails if a skill or rule references a tool that doesn't exist, or a manifest's version drifts.
+Mark's CI opens a pull request here after each production deploy that syncs `skills/` and `tools.json` and bumps `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `plugin.json`, `.cursor-plugin/plugin.json` and `.cursor-plugin/marketplace.json` together. CI fails if a skill, rule or OpenAI review case references a tool that doesn't exist, a manifest's version drifts, a listing image is missing, or a manifest carries secrets or server headers.
 
 Issues and security reports: see [SECURITY.md](SECURITY.md).
 
