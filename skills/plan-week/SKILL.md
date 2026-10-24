@@ -14,23 +14,23 @@ You turn Mark's strategy (pillars, angles, personas), the open calendar slots, a
 - Ask only for what you can't infer. Defaults: next Monday through Sunday in the workspace timezone, every connected channel, and one post per open slot.
 
 ## Setup
-Call `get_setup_status`. When it reports a gap this skill needs, follow its fix:
-- Missing market: ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
-- Missing site: ask for the hostname, then `save_site`.
-- Missing LinkedIn/social or Google: `get_connect_link`, give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
+Call `get_setup_status` and read `rows` for the steps this skill needs: "market", "social", "posting_times". A row in state "todo" or "skipped" is missing. `ready` and `gaps` leave out skipped rows, so don't rely on them. For a "skipped" row, tell the user they skipped it and ask before you set it up. For each missing row:
+- "market": ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
+- "social": `get_connect_link` with provider `zernio` (or the channel), give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
+- "posting_times": ask which weekdays and times, then `update_posting_slots`.
 
 ## Procedure
 1. **Gather context** (read-only):
    - `get_brand_context`: voice, pillars, angles, personas, KPI targets.
    - `get_calendar` for the week: scheduled posts and open slots.
-   - `get_content_performance` for the last 30 days: top pillars and angles, and weak channels.
+   - `get_content_performance` for the last 30 days: which pillars and posts gained the most impressions and engagement, and which gained little.
    - `get_search_performance`: rising queries and striking-distance topics worth a post.
    - `list_saved_keywords`: tagged topics the team already cares about.
 2. **Draft the plan.** Call `get_drafting_guide` once for each channel in the plan (`surface` is the channel) and keep each guide and its `guideVersion` for step 4. Each guide says which formats suit that channel and what each is for. For each open slot, give: day and time, channel, pillar, angle, format (for example carousel, reel, thread or text post), a one-line hook, and why it's there (for example "angle X drove 2× engagement last month"). Balance the pillars across the week, mix formats instead of repeating one, keep promotional posts a small share, don't repeat an angle on the same channel, and respect existing scheduled posts.
 3. **✋ Checkpoint 1: plan approval.** Show the plan as a table and ask: **"Here's the plan for ‹week›. Shall I write these ‹N› drafts? Tell me what to change first."** Don't create anything until the user says yes.
 4. **Write each draft:**
    - Follow each channel's guide from step 2 exactly. If the user changed the plan or a brand rule since then, call `get_drafting_guide` again for that channel.
-   - For media, `search_assets` then `get_asset` to pick existing images or video. Use `add_asset` only when the user provides a URL or file.
+   - For media, `search_assets` then `get_asset` to pick existing images or video. Use `add_asset` only when the user provides a URL or file: a public URL imports in one call; a local file takes three (`add_asset` with `fileName` returns a signed link, PUT the file to it with curl, then `add_asset` with the returned `pathname`). Pass the new asset id to `save_post`.
    - Call `save_post` (omit `postId`; set `channel`, `body`, media, angle, pillar, `scheduledAt` as ISO 8601, and `guideVersion` from that channel's guide). It creates a draft and never publishes. Keep the returned `postId` and `rev`.
 5. **✋ Checkpoint 2: before review.** Show every draft (channel, time, full text, media). Ask: **"Send these ‹N› drafts to review in Mark?"** Before asking, check each channel's approval mode with `list_channels`. **If any channel auto-approves, say so plainly:** "‹Channel› auto-approves: submitting will schedule it to publish at ‹time› without review." Then call `submit_post` for each confirmed draft and report what each result says (in review, or auto-approved and scheduled).
 6. **Approval is the user's call.** Never call `approve_posts` unless the user explicitly says "approve" for specific posts. Then pass each post's current `rev` from `get_post`. **Approved posts publish automatically at their scheduled time.** If the server says a post changed since you read it, call `get_post` again and show the change before retrying.

@@ -14,7 +14,7 @@ You help a person look at posts in Mark and decide on them. **The decision is al
 ## Procedure
 1. **Find the posts.**
    - A post they named ("the pricing page", "Friday's LinkedIn post"): call `search_posts` with text, channel or dates. If several match, list them and ask which.
-   - Otherwise, call `search_posts` with status `awaiting_review` (the review queue).
+   - Otherwise, call `search_posts` with status `in_review` (the review queue).
    - Show a table: channel, scheduled time, first line, link (`appUrl`). If the queue is empty, say so and stop.
 2. **Show each post** the person wants to look at with `show_post`, one at a time. In Claude and ChatGPT it draws a preview with Approve, Request changes and Reject buttons; other clients get the text, so show the body. Then say, briefly:
    - the channel and when it goes out. **Approving publishes at its scheduled time**; for a website post, say the next CMS step the result names.

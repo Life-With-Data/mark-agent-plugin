@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of 105 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 108 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.use-mark.com/mcp",
   "tools": [
     {
@@ -222,6 +222,18 @@
       "pr": 2,
       "annotations": {
         "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "skip_setup_step",
+      "title": "Skip Setup Step",
+      "group": "Workspace and brand",
+      "annotations": {
+        "readOnlyHint": false,
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
@@ -567,6 +579,18 @@
       "paid": false
     },
     {
+      "name": "edit_published_post",
+      "title": "Edit Published Post",
+      "group": "Posts, review, and calendar",
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      },
+      "paid": false
+    },
+    {
       "name": "record_post_published",
       "title": "Record Post Published",
       "group": "Posts, review, and calendar",
@@ -785,9 +809,9 @@
       "group": "Keywords and competitors",
       "pr": 1,
       "annotations": {
-        "readOnlyHint": true,
+        "readOnlyHint": false,
         "destructiveHint": false,
-        "idempotentHint": true,
+        "idempotentHint": false,
         "openWorldHint": true
       },
       "paid": true
@@ -798,9 +822,9 @@
       "group": "Keywords and competitors",
       "pr": 1,
       "annotations": {
-        "readOnlyHint": true,
+        "readOnlyHint": false,
         "destructiveHint": false,
-        "idempotentHint": true,
+        "idempotentHint": false,
         "openWorldHint": true
       },
       "paid": true
@@ -850,9 +874,9 @@
       "group": "Keywords and competitors",
       "pr": 1,
       "annotations": {
-        "readOnlyHint": true,
+        "readOnlyHint": false,
         "destructiveHint": false,
-        "idempotentHint": true,
+        "idempotentHint": false,
         "openWorldHint": true
       },
       "paid": true
@@ -901,6 +925,18 @@
       "title": "Track Competitor",
       "group": "Keywords and competitors",
       "pr": 4,
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "rename_competitor",
+      "title": "Rename Competitor",
+      "group": "Keywords and competitors",
       "annotations": {
         "readOnlyHint": false,
         "destructiveHint": false,

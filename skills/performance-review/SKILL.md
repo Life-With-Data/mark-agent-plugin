@@ -15,7 +15,7 @@ You give the team an honest, specific read on what's working, backed by Mark's n
 
 ## Procedure
 1. **Pull the numbers** (read-only; run these in parallel if your client allows it):
-   - `get_content_performance` for the period, with comparison: reach, engagement and clicks by channel, post, pillar and angle, plus progress against KPI targets.
+   - `get_content_performance` for the period: impressions and engagement posts gained in it and tracked clicks, by pillar and post, with `daily` (per day) and `previous` (the period before) for comparison, plus progress against KPI targets.
    - `get_search_performance`: clicks, impressions, position, top movers, striking-distance queries (positions 5–20) and anomalies.
    - `get_rankings`: tracked keyword winners and losers.
    - `get_ai_visibility`: buyer-question coverage, AI search volume, AI assistant bot fetches (not referrals).
