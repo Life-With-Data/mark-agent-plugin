@@ -120,12 +120,15 @@ for (const f of existsSync(rulesDir) ? readdirSync(rulesDir).filter((f) => /\.(m
   console.log(`✓ ${rel}`);
 }
 
-// OpenAI listing (extensions.com.openai in plugin.json): image paths exist, review cases name real tools.
+// OpenAI listing (extensions.com.openai in plugin.json): image paths and onboardingSkill exist, review cases name real tools.
 const openai = ap.extensions?.["com.openai"];
 if (openai) {
   for (const key of ["logo", "logoDark", "composerIcon", "composerIconDark"]) {
     const p = openai.interface?.[key];
     if (p !== undefined && (typeof p !== "string" || !existsSync(join(root, p)))) err(`plugin.json: extensions.com.openai.interface.${key} must be a path that exists (is ${JSON.stringify(p)})`);
+  }
+  if (openai.onboardingSkill !== undefined && (typeof openai.onboardingSkill !== "string" || !existsSync(join(root, openai.onboardingSkill)))) {
+    err(`plugin.json: extensions.com.openai.onboardingSkill must be a path that exists (is ${JSON.stringify(openai.onboardingSkill)})`);
   }
   for (const kind of ["positive", "negative"]) {
     for (const [i, c] of (openai.review?.test_cases?.[kind] ?? []).entries()) {
