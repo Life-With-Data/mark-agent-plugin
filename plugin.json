@@ -21,6 +21,7 @@
   ],
   "extensions": {
     "com.openai": {
+      "onboardingSkill": "./skills/get-started/SKILL.md",
       "interface": {
         "displayName": "Mark",
         "shortDescription": "Plan, review and approve posts",
