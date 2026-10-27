@@ -1,6 +1,7 @@
 ---
 name: brand-interview
 description: Sets up a brand in Mark from the brand's own files and a short interview with the owner - positioning, voice, doctrine, phrases Mark should block or warn on, and the facts drafts may state - and saves each part only after the owner approves it. Re-run it to add to what Mark already has. Use when the user wants to set up or update their brand rules in Mark, onboard a new brand, or says things like "set up our brand rules in Mark", "teach Mark how we write" or "get Mark ready to draft for us". Run it from the brand's own folder.
+metadata: { mark-summary: "Set up your brand voice and rules from your files, with your OK." }
 ---
 
 # Brand interview
@@ -36,7 +37,7 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
    | Claims to avoid | Claims you can't back up today (outcomes, guarantees, comparisons). These go in the offer section, not voice dont lines. |
    | Facts | Prices, certifications and numbers you state publicly, and where each one is written down. |
    | Channel notes | Anything different per channel. A literal phrase becomes an exclusion for that channel. Anything else becomes a voice do or dont line that names the channel. |
-   | Entity (long-form only) | Ask only if the brand publishes blog posts, FAQs or landing pages. The main thing you want answer engines to name you for, named experts, and your profile URLs. |
+   | Entity (long-form only) | Ask only if the brand publishes blog posts, FAQs or competitor pages. The main thing you want answer engines to name you for, named experts, and your profile URLs. |
 
 5. **Map each answer to a field.**
 

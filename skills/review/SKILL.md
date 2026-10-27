@@ -1,6 +1,7 @@
 ---
 name: review
 description: Shows posts in Mark and records the reviewer's decision on each - approve, request changes with a note, or reject - only after the person chooses. Lists what's waiting on review, opens any post by description, and says what blocks or informs approval (open claim flags, checks to look at, the site draft, when it goes out). Use when the user asks what's waiting on their review, wants to see or check a post ("show me Friday's LinkedIn post"), or wants to approve, send back or reject posts.
+metadata: { mark-summary: "See posts waiting on you, then approve or send them back." }
 ---
 
 # Review

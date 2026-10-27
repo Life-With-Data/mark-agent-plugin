@@ -1,6 +1,7 @@
 ---
 name: performance-review
 description: Produces a plain-English marketing performance review from Mark - social engagement by channel, pillar and angle, Google Search results, keyword rankings and AI-assistant visibility, compared with the previous period and KPI targets - and proposes what to do next. Use when the user asks how marketing is going, for a weekly or monthly report, "what worked last month?", or which angles or topics to double down on. Read-only unless the user explicitly accepts a live angle or a live KPI target.
+metadata: { mark-summary: "Read search and content results, then propose changes." }
 ---
 
 # Performance review

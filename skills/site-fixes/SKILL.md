@@ -1,6 +1,7 @@
 ---
 name: site-fixes
 description: Turns Mark's site audit, AI-agent readiness scan and Google Search Console data into a prioritized, plain-English fix list for the website owner - indexing problems, broken pages, missing structured data, slow pages - with the evidence for each. Use when the user asks what's wrong with their website, why a page isn't indexed or ranking, for an SEO or technical audit, or what to fix first. Advice only; Mark never edits the site.
+metadata: { mark-summary: "Read the site audit and say what to fix first." }
 ---
 
 # Site fixes

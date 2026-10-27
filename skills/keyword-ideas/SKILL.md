@@ -1,6 +1,7 @@
 ---
 name: keyword-ideas
 description: Finds and vets keyword and topic ideas in Mark - from Search Console queries, the saved keyword list, competitor domains and paid keyword research - checks whether the people searching match the target audience, saves the shortlist, and writes a content brief as a draft. Use when the user asks for keyword ideas, SEO topics, what to write about, competitor keywords, or content gaps.
+metadata: { mark-summary: "Research keywords and save a brief as a draft." }
 ---
 
 # Keyword ideas

@@ -1,6 +1,7 @@
 ---
 name: plan-week
 description: Plans the coming week of social posts in Mark from the brand strategy, calendar gaps and recent performance, then writes the drafts and sends them to review. Use when the user asks to plan next week's posts, fill the content calendar, draft a week of LinkedIn, Instagram or X posts, or "what should we post next week?". Requires the Mark connection (MCP tools such as get_workspace).
+metadata: { mark-summary: "Draft the week's posts from your pillars and calendar." }
 ---
 
 # Plan the week
@@ -17,7 +18,7 @@ You turn Mark's strategy (pillars, angles, personas), the open calendar slots, a
 Call `get_setup_status` and read `rows` for the steps this skill needs: "market", "social", "posting_times". A row in state "todo" or "skipped" is missing. `ready` and `gaps` leave out skipped rows, so don't rely on them. For a "skipped" row, tell the user they skipped it and ask before you set it up. For each missing row:
 - "market": ask the user for the place and language (never guess). If the place is unclear, `list_market_locations`, then `set_up_market`.
 - "social": `get_connect_link` with provider `zernio` (or the channel), give the user the link (connecting stays in the Mark app), then `sync_connections` after they say they're done.
-- "posting_times": ask which weekdays and times, then `update_posting_slots`.
+- "posting_times": ask which weekdays and how many posts each day, then `update_posting_slots`. If they name a time, set it as the channel's posting time with `update_channel_settings`.
 
 ## Procedure
 1. **Gather context** (read-only):

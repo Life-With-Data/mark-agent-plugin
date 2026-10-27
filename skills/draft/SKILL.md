@@ -1,6 +1,7 @@
 ---
 name: draft
-description: Drafts one post or page in Mark for one channel - LinkedIn, Instagram, Facebook, X, TikTok, YouTube, Pinterest, a blog post, an FAQ, a landing page or a competitor page - from the workspace's drafting guide, runs Mark's content checks on every version, and saves it as a draft only when the person accepts it. Also checks content written outside Mark before it goes out. Use when the user asks to write, draft or rewrite a single post or page, for example "write a LinkedIn post about our new feature", "draft a blog post on pricing", or "check this post before I publish it".
+description: Drafts one post or page in Mark for one channel - LinkedIn, Instagram, Facebook, X, TikTok, YouTube, Pinterest, a blog post, an FAQ or a competitor page - from the workspace's drafting guide, runs Mark's content checks on every version, and saves it as a draft only when the person accepts it. Also checks content written outside Mark before it goes out. Use when the user asks to write, draft or rewrite a single post or page, for example "write a LinkedIn post about our new feature", "draft a blog post on pricing", or "check this post before I publish it".
+metadata: { mark-summary: "Draft one post or page with your rules and Mark's checks." }
 ---
 
 # Draft
@@ -11,7 +12,7 @@ You draft one piece of content for one channel the way the workspace has set it 
 - If Mark tools (`get_workspace` and the others) aren't available, stop and tell the user: "Connect Mark first: https://docs.use-mark.com/docs/use-mark-from-ai-agents".
 - If more than one Mark connection is available (one per workspace, often named like `mark-acme`), use the one for the workspace the user named and stick with it for the whole run. If they didn't name one, ask which workspace.
 - Call `get_workspace`. Tell the user which workspace you're working in (for example "Working in **Verdella**"). If it's the wrong one, switch to that workspace's Mark connection if there is one. Otherwise they need to reconnect Mark and pick the right workspace. There is no workspace argument.
-- **Pick the surface.** If the request came with arguments (`/mark:draft linkedin` arrives as `ARGUMENTS: linkedin`), the first word is the surface. Otherwise take it from the request. The guide covers instagram, facebook, youtube, pinterest, tiktok, x, linkedin, blog, faq, `competitor_page` and `landing_page`. If you can't tell which, ask. For email, `meta_ads` or `google_ads`, say Mark's drafting guide doesn't cover that channel yet and stop.
+- **Pick the surface.** If the request came with arguments (`/mark:draft linkedin` arrives as `ARGUMENTS: linkedin`), the first word is the surface. Otherwise take it from the request. The guide covers instagram, facebook, youtube, pinterest, tiktok, x, linkedin, blog, faq and `competitor_page`. If you can't tell which, ask. For `meta_ads` or `google_ads`, say Mark's drafting guide doesn't cover that channel yet and stop.
 - If the person pasted content written outside Mark and wants it checked, follow **Check outside content** below instead.
 
 ## Procedure

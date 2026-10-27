@@ -1,6 +1,7 @@
 ---
 name: ai-visibility
 description: Checks how AI assistants such as ChatGPT, Perplexity, Gemini and Claude see the business in Mark - buyer questions, AI search volume, assistant referral traffic and site readiness for AI agents - and turns the gaps into buyer questions to track and answer-style content drafts. Use when the user asks about AI search, AEO or GEO, "do we show up in ChatGPT?", LLM visibility, or which questions buyers ask assistants.
+metadata: { mark-summary: "See how AI assistants describe you and draft FAQ answers." }
 ---
 
 # AI visibility
