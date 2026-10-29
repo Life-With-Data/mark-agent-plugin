@@ -15,7 +15,7 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
 - Tools this skill uses: `get_workspace`, `get_brand_context` and `suggest_brand_rules` to read; `update_brand_profile`, `save_content_exclusion`, `add_source` and `save_claim` to write. Nothing else.
 
 ## Procedure
-1. **See what Mark has.** Call `get_brand_context`. Note per section: the voice section (positioning, differentiators, doctrine, voice tone, principles, do and dont lines, company facts), the overlay section (entities and evidence), the offer section (what you sell today, available now, planned, pricing, promises, claims to avoid), which sections are confirmed (brandReview), the active exclusions, claims and sources. If the voice section already has positioning or voice lines, work in **update mode** (below).
+1. **See what Mark has.** Call `get_brand_context`. Note per section: the voice section (positioning, differentiators, doctrine, voice tone, principles, do and dont lines, posts that don't sound like the brand, company facts), the overlay section (entities and evidence), the offer section (what you sell today, available now, planned, pricing, promises, claims to avoid), which sections are confirmed (brandReview), the active exclusions, claims and sources. If the voice section already has positioning or voice lines, work in **update mode** (below).
 2. **Read the local files.** Read only, in the current folder, with file reads (no shell commands):
    - `AGENTS.md`, `CLAUDE.md` and `README.md` at the root.
    - Every markdown file in `context/`. A context pack exported from Mark uses four files: `company.md`, `customer.md`, `offer.md` and `voice.md`.
@@ -30,7 +30,7 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
    | --- | --- |
    | Positioning | In one sentence, what you sell and to whom. What makes you different from the obvious alternative. |
    | Audience | Who you write for, and what they already know. (There is no audience field. It goes in doctrine or the voice principles.) |
-   | Voice | Three words for how you sound. A sentence you'd write and one you never would. |
+   | Voice | Three words for how you sound, each with what it is not ("warm, not gushing"). A sentence you'd write and one you never would. |
    | Doctrine | What you believe that a competitor wouldn't say. |
    | Never publish | Words, phrases or claims you never want in a post. For each, block or warn, and every channel or one. |
    | Offer | What you sell today, what's available now, what's planned but not available yet, how you price, and what you promise every customer. |
@@ -43,7 +43,8 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
 
    | What | Where it goes |
    | --- | --- |
-   | Positioning, differentiators, doctrine, voice tone, principles, do and dont lines, company facts | `update_brand_profile` with section voice |
+   | Positioning, differentiators, doctrine, voice tone, principles, do and dont lines, company facts | `update_brand_profile` with section voice. Write each tone entry as "<word>, not <limit>" ("warm, not gushing or sentimental"); a plain word is fine when there is no limit |
+   | A sentence the owner would never write | `update_brand_profile` with section voice, in `voice.antiExamples` (posts that don't sound like the brand) |
    | Primary entity, secondary entities (at most 3), experts, sameAs profile URLs, Wikidata ids | `update_brand_profile` with section overlay |
    | What you sell today, available now, planned and not available yet, pricing, promises, claims you can't back up | `update_brand_profile` with section offer (`today`, `availableNow`, `planned`, `pricing`, `promises`, `claimsToAvoid`) |
    | Overlay evidence | An evidence row with a label and a sourceUrl, or a sourceId when the source is already in Mark |
@@ -57,7 +58,7 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
    Don't touch the visual identity section, strategy items (personas, pillars, angles) or channel settings. A `customer.md` describes personas; leave those for the owner to add on the Messaging page. Per-channel notes never go anywhere but exclusions and voice lines.
 6. **✋ Checkpoint per section: save it?** Before every write, show a short before and after for that section or item, and ask. One yes covers one `update_brand_profile` call or one list of exclusions or claims, never the whole run. If the owner says no, leave that section as it is and move on.
    - **Confirming.** Pass **confirm: true** to `update_brand_profile` only when the owner has read the final text of that section and says to confirm it. Otherwise save without it, and give them the returned `appUrl` to review and confirm it in Mark. Mark's own drafting uses a section only once it's confirmed.
-   - Lists you send (voice do, dont, principles, tone, differentiators, doctrine, and the offer lists) replace the saved list. Always send the full merged list.
+   - Lists you send (voice do, dont, principles, tone, antiExamples, differentiators, doctrine, and the offer lists) replace the saved list. Always send the full merged list.
 7. **Close with a summary.**
    - What was saved, per section, and what was skipped and why.
    - **Ready or not ready.** The brand is ready when:
