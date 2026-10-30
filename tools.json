@@ -1,5 +1,5 @@
 {
-  "$comment": "Lockfile of 108 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
+  "$comment": "Lockfile of 110 Mark MCP tool names, titles and annotations matching the live server. scripts/check-skills.mjs fails if a skill references a tool not listed here. Update in the same PR as any server-side rename.",
   "server": "https://app.use-mark.com/mcp",
   "tools": [
     {
@@ -641,6 +641,18 @@
       "paid": false
     },
     {
+      "name": "list_asset_folders",
+      "title": "List Asset Folders",
+      "group": "Assets",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
       "name": "search_cms_media",
       "title": "Search CMS Media",
       "group": "Assets",
@@ -1017,6 +1029,18 @@
         "destructiveHint": false,
         "idempotentHint": true,
         "openWorldHint": false
+      },
+      "paid": false
+    },
+    {
+      "name": "suggest_competitors",
+      "title": "Suggest Competitors",
+      "group": "Keywords and competitors",
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
       },
       "paid": false
     },
