@@ -49,7 +49,7 @@ You help the owner put their brand into Mark: what they sell and to whom, how th
    | What you sell today, available now, planned and not available yet, pricing, promises, claims you can't back up | `update_brand_profile` with section offer (`today`, `availableNow`, `planned`, `pricing`, `promises`, `claimsToAvoid`) |
    | Overlay evidence | An evidence row with a label and a sourceUrl, or a sourceId when the source is already in Mark |
    | A literal word or phrase to block or warn on | `save_content_exclusion` with the phrase (at most 120 characters), severity block or warn, the channel when it's one channel, and a short reason |
-   | A stated fact with words that prove it | `save_claim` with text, category (cert, price, lead time or spec), the quote copied exactly from the source, and either a new source (title, body, url when there is one) or the sourceId of a source already in Mark. When one source backs several claims, call `add_source` once and pass its id to each claim. |
+   | A stated fact with words that prove it | `save_claim` with text, category (a short label of the person's own, like Price or Customer results; reuse one list_claims already shows), the quote copied exactly from the source, and either a new source (title, body, url when there is one) or the sourceId of a source already in Mark. When one source backs several claims, call `add_source` once and pass its id to each claim. |
    | A changed exclusion | Exclusions are never edited: retire the old one (`save_content_exclusion` with its id and active false), then create the new one |
    | A changed claim | `save_claim` with the claim's id and the fields that change (Mark retires the old one and creates the new one) |
 
